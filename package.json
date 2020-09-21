@@ -1,0 +1,28 @@
+{
+	"name": "simple-rest-tester",
+	"version": "1.0.0",
+	"description": "Simple JSON-driven test framework for REST APIs",
+	"keywords": "mocha,regexp,tdd",
+	"homepage": "https://github.com/Jmcleodofoss/simple-rest-tester",
+	"bugs": {
+		"url": "https://github.com/Jmcleodfoss/simple-rest-tester/issues",
+		"email": "jmcleodfoss@gmail.com"
+	},
+	"license": "MIT",
+	"author": {
+		"name": "James McLeod",
+		"email": "jmcleodfoss@gmail.com"
+	},
+	"files": [
+		"simple-rest-tester.js"
+	],
+	"main": "simple-rest-tester",
+	"repository": {
+		"type": "git",
+		"url": "https://github.Jmcleodfoss/simple-rest-tester"
+	},
+	"dependencies": [
+		"chai"
+	],
+	"engines": { "node": ">=12.18.0" }
+}
