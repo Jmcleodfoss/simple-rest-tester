@@ -1,6 +1,5 @@
 "use strict";
 
-const http = require('http');
 const path = require('path');
 
 const chai = require('chai');
@@ -10,9 +9,8 @@ var debug = process.env.DEBUG_TEST || false;
 var responses = {};
 
 /* Save results of query for future tests to use in a ${A}.b macro */
-function saveMacros(jsonFile, responseStr)
+function saveMacros(prefix, responseStr)
 {
-	const prefix = path.basename(jsonFile, ".json");
 	const responseObject = JSON.parse(responseStr);
 	Object.keys(responseObject).forEach(function(key){
 		const index = '${' + prefix + '}.' + key;
@@ -33,10 +31,9 @@ function substituteMacros(str)
 	return str;
 }
 
-exports.mocha = (reqDescr, jsonFile, scheme) =>
+exports.mocha = (reqDescr) =>
 {
-	if (scheme === undefined)
-		scheme = http;
+	const scheme = reqDescr.scheme == 'http' ? require('http') : require('https');
 
 	describe(reqDescr.description, function(done){
 		this.timeout(reqDescr.timeout || 2000);
@@ -60,7 +57,7 @@ exports.mocha = (reqDescr, jsonFile, scheme) =>
 
 		after(function(done){
 			if (reqDescr.saveResponse && statusCode == 200)
-				saveMacros(jsonFile, responseStr);
+				saveMacros(reqDescr.testName, responseStr);
 			done();
 		});
 
