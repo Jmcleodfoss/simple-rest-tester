@@ -61,7 +61,7 @@ exports.mocha = (reqDescr) =>
 			done();
 		});
 
-		it(reqDescr.behavior, async function(){
+		it(reqDescr.expectation, async function(){
 			if (reqDescr.hasOwnProperty('payload')) {
 				let payload = substituteMacros(JSON.stringify(reqDescr.payload));
 				req.write(payload);
