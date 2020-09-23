@@ -33,7 +33,7 @@ function substituteMacros(str)
 
 exports.mocha = (reqDescr) =>
 {
-	const scheme = reqDescr.scheme == 'http' ? require('http') : require('https');
+	const scheme = require(reqDescr.scheme);
 
 	describe(reqDescr.description, function(done){
 		this.timeout(reqDescr.timeout || 2000);
