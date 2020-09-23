@@ -76,7 +76,7 @@ exports.mocha = (reqDescr) =>
 
 			expect(statusCode).to.equal(parseInt(reqDescr.status));
 
-			if ('returnRegEx' in reqDescr)
+			if ('responseRegexp' in reqDescr)
 				expect(responseStr).to.match(new RegExp(reqDescr.returnRegEx));
 		});
 	});
