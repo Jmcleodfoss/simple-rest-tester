@@ -44,6 +44,8 @@ exports.mocha = (reqDescr) =>
 
 		beforeEach(function(done){
 			reqDescr.options.path = substituteMacros(reqDescr.options.path);
+			if (debug)
+				console.log('path: ' + path);
 			req = scheme.request(reqDescr.options, function(response) {
 				responseStr = '';
 				response.on('data', function(chunk){
@@ -64,6 +66,8 @@ exports.mocha = (reqDescr) =>
 		it(reqDescr.expectation, async function(){
 			if (reqDescr.hasOwnProperty('payload')) {
 				let payload = substituteMacros(JSON.stringify(reqDescr.payload));
+				if (debug)
+					console.log('payload: ' + payload);
 				req.write(payload);
 			}
 			req.end();
