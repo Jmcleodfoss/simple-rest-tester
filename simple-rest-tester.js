@@ -57,7 +57,7 @@ exports.mocha = (reqDescr) =>
 
 		after(function(done){
 			if (reqDescr.saveResponse && statusCode == 200)
-				saveMacros(reqDescr.testName, responseStr);
+				saveMacros(reqDescr.testname, responseStr);
 			done();
 		});
 
