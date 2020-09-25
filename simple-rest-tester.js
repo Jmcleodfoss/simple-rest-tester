@@ -45,7 +45,7 @@ exports.mocha = (reqDescr) =>
 		beforeEach(function(done){
 			reqDescr.options.path = substituteMacros(reqDescr.options.path);
 			if (debug)
-				console.log('path: ' + path);
+				console.log('path: ' + reqDescr.options.path);
 			req = scheme.request(reqDescr.options, function(response) {
 				responseStr = '';
 				response.on('data', function(chunk){
