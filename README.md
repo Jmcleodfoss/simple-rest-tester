@@ -40,7 +40,7 @@ The test information is stored in a json file with the following members:
 * The value of `scheme` is used with a`require` command to create an http or https object.
 * The value of `payload` is written into the POST or PUT request.
 * The `options` object is the passed into the [http.request](https://nodejs.org/api/http.html#http_http_request_options_callback) or
-[https.request[(https://nodejs.org/api/https.html#https_https_request_options_callback) function.
+[https.request](https://nodejs.org/api/https.html#https_https_request_options_callback) function.
 
 ## Test File Names
 By convention, the base file name is the same as the testname member, with the extension "json": METHOD_service_response.json, 
@@ -79,6 +79,7 @@ saving the returned item index from a POST request to use in a DELETE, GET, or P
 To save the response from a test, the following elements need to be defined in the test object:
 * `saveResponse: true`
 * `testname: /* A unique name for the test, e.g. POST_tag_200 */`
+
 The test must return an object like `{"addedItemIndex":"193"}`.
 
 ### Referring to Saved Data
