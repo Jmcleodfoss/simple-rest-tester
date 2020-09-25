@@ -4,9 +4,8 @@ const mocha_test = require('simple-rest-tester').mocha;
 
 function test(jsonFile)
 {
-	const reqDescr = require(jsonFile);
-
 	try {
+		const reqDescr = require(jsonFile);
 		mocha_test(reqDescr);
 	} catch (ex) {
 		console.log(ex);
