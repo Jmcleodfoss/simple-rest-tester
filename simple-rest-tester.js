@@ -67,7 +67,7 @@ exports.mocha = (reqDescr) =>
 			if (reqDescr.hasOwnProperty('payload')) {
 				let payload = substituteMacros(JSON.stringify(reqDescr.payload));
 				if (debug)
-					console.log('payload: ' + payload);
+					console.log('payload: ' + JSON.stringify(payload));
 				req.write(payload);
 			}
 			req.end();
