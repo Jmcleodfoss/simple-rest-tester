@@ -47,7 +47,7 @@ By convention, the base file name is the same as the testname member, with the e
 e.g. POST_myservice_200.json.
 
 ## Running Tests
-Run tests using a file like [examples/test.js](https://github.com/Jmcleodfoss/simple-rest-tester/blob/master/examples/test.js):
+Create a test suite using a file like [examples/test.js](https://github.com/Jmcleodfoss/simple-rest-tester/blob/master/examples/test.js):
 ```
 "use strict";
 
@@ -70,6 +70,7 @@ test('./POST_service_200.json')
 test('./POST_service_400.json')
 // etc
 ```
+Invoke *mocha* in the directory containing the above script to run the tests.
 
 ## Macros
 Within a given run of a suite of tests, it is possible to save information returned in one test for use in a later test, for example,
