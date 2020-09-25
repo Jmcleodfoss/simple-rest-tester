@@ -46,6 +46,31 @@ The test information is stored in a json file with the following members:
 By convention, the base file name is the same as the testname member, with the extension "json": METHOD_service_response.json, 
 e.g. POST_myservice_200.json.
 
+## Running Tests
+Run tests using a file like [examples/test.js](https://github.com/Jmcleodfoss/simple-rest-tester/blob/master/examples/test.js):
+```
+"use strict";
+
+const mocha_test = require('simple-rest-tester').mocha;
+
+function test(jsonFile)
+{
+	var reqDescr = require(jsonFile);
+
+	try {
+		mocha_test(reqDescr);
+	} catch (ex) {
+		console.log(ex);
+	}
+}
+
+// Order of tests is important if you are using macros ore relying on the existence of resources created by earlier tests in later tests
+test('./GET_ping_204.json')
+test('./POST_service_200.json')
+test('./POST_service_400.json')
+// etc
+```
+
 ## Macros
 Within a given run of a suite of tests, it is possible to save information returned in one test for use in a later test, for example,
 saving the returned item index from a POST request to use in a DELETE, GET, or PUT request.
