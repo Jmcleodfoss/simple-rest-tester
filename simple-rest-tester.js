@@ -5,7 +5,7 @@ const path = require('path');
 const chai = require('chai');
 const expect = chai.expect;
 
-var debug = process.env.DEBUG_TEST || false;
+var debug = process.env.SRT_DEBUG || false;
 var responses = {};
 
 /* Save results of query for future tests to use in a ${A}.b macro */
