@@ -69,7 +69,7 @@ exports.mocha = (reqDescr) =>
 
 		it(reqDescr.expectation, async function(){
 			if (reqDescr.hasOwnProperty('payload')) {
-				let payload = substituteMacros(JSON.stringify(reqDescr.payload));
+				const payload = substituteMacros(JSON.stringify(reqDescr.payload));
 				if (debug)
 					console.log('payload: ' + JSON.stringify(payload));
 				req.write(payload);
