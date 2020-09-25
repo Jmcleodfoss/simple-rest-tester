@@ -4,6 +4,10 @@ const path = require('path');
 
 const chai = require('chai');
 const expect = chai.expect;
+const schemes = {
+	'http': require('http'),
+	'https' : require('https')
+};
 
 var debug = process.env.SRT_DEBUG || false;
 var responses = {};
@@ -33,7 +37,7 @@ function substituteMacros(str)
 
 exports.mocha = (reqDescr) =>
 {
-	const scheme = require(reqDescr.scheme);
+	const scheme = schemes[reqDescr.scheme];
 
 	describe(reqDescr.description, function(done){
 		this.timeout(reqDescr.timeout || 2000);
