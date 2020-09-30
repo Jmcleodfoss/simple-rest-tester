@@ -25,7 +25,7 @@ function saveMacros(prefix, responseStr)
 /* Perform ${A}.b macro substitution */
 function substituteMacros(str)
 {
-	const macroRegex = /\${[^}]*}\.[A-Za-z_][0-9A-Za-z]*/;
+	const macroRegex = /\${[^}]*}\.[A-Za-z_][0-9A-Za-z_]*/;
 	const substitutions = str.match(macroRegex);
 	if (substitutions == null)
 		return str;
