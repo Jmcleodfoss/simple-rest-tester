@@ -50,8 +50,9 @@ exports.mocha = (reqDescr) =>
 		let statusCode;
 		let responseStr = '';
 
+		reqDescr = applyMacros(reqDescr);
+
 		beforeEach(function(done){
-			reqDescr.options.path = substituteMacros(reqDescr.options.path);
 			if (debug)
 				console.log('path: ' + reqDescr.options.path);
 			req = scheme.request(reqDescr.options, function(response) {
@@ -73,7 +74,6 @@ exports.mocha = (reqDescr) =>
 
 		it(reqDescr.expectation, async function(){
 			if (reqDescr.hasOwnProperty('payload')) {
-				const payload = substituteMacros(JSON.stringify(reqDescr.payload));
 				if (debug)
 					console.log('payload: ' + JSON.stringify(payload));
 				req.write(payload);
@@ -92,4 +92,14 @@ exports.mocha = (reqDescr) =>
 				expect(responseStr).to.match(new RegExp(reqDescr.returnRegEx));
 		});
 	});
+}
+
+/** Apply all macro substitutions in the test object */
+exports.applyMacros = (reqDescr) =>
+{
+	reqDescr.options.path = substituteMacros(reqDescr.options.path);
+	if (reqDescr.hasOwnProperty('payload'))
+		reqDescr.payload = JSON.parse(substituteMacros(JSON.stringify(reqDescr.payload)));
+
+	return reqDescr;
 }
