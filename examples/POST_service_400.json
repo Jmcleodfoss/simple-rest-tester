@@ -1,0 +1,21 @@
+{
+  "testname": "POST_service_400",
+  "description": "POST /v1/service",
+  "expectation": "should fail because the item data is invalid test by ${env}.USER starting at ${timestamp}",
+  "status": "400",
+  "responseRegexp": ".*",
+  "scheme": "http",
+  "options": {
+    "host": "localhost",
+    "port": "3000",
+    "path": "/v1/service?userId=1",
+    "method": "POST",
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  },
+  "payload": {
+    "itemStr": "item data",
+    "itemNumeric": "more item data"
+  }
+}

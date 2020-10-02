@@ -1,0 +1,17 @@
+{
+  "testname": "GET_service_200",
+  "description": "GET /v1/service/{itemId} test by ${env}.USER starting at ${timestamp}",
+  "expectation": "should return the requested item",
+  "status": "200",
+  "responseRegexp": ".*",
+  "scheme": "http",
+  "options": {
+    "host": "localhost",
+    "port": "3000",
+    "path": "/v1/service/${POST_service_200}.itemid?${env}.HOME&${undefined}",
+    "method": "GET",
+    "headers": {
+      "accept": "application/json"
+    }
+  }
+}
