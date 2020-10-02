@@ -119,9 +119,11 @@ exports.mocha = (reqDescr) =>
 /** Apply all macro substitutions in the test object */
 exports.applyMacros = (reqDescr) =>
 {
-	reqDescr.options.path = substituteMacros(reqDescr.options.path);
-	if (reqDescr.hasOwnProperty('payload'))
-		reqDescr.payload = JSON.parse(substituteMacros(JSON.stringify(reqDescr.payload)));
-
+	for (const m of Object.keys(reqDescr)) {
+		if (typeof reqDescr[m] === 'string')
+			reqDescr[m] = substituteMacros(reqDescr[m]);
+		else if (typeof reqDescr[m] === 'object')
+			reqDescr[m] = this.applyMacros(reqDescr[m]);
+	}
 	return reqDescr;
 }
