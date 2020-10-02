@@ -12,6 +12,9 @@ const schemes = {
 var debug = process.env.SRT_DEBUG || false;
 var responses = {};
 
+const macroRegex = /\${[^}]*}(\.[A-Za-z_][0-9A-Za-z_]*)?/;
+const envMacroRegex = /\${env}(\.([A-Za-z_][0-9A-Za-z_]*))/g;
+
 /* Save results of query for future tests to use in a ${A}.b macro */
 function saveMacros(prefix, responseStr)
 {
@@ -25,7 +28,17 @@ function saveMacros(prefix, responseStr)
 /* Perform ${A}.b macro substitution */
 function substituteMacros(str)
 {
-	const macroRegex = /\${[^}]*}\.[A-Za-z_][0-9A-Za-z_]*/;
+	const envSubstitutions = str.match(envMacroRegex);
+	if (envSubstitutions != null) {
+		for (const value of envSubstitutions) {
+			const index = value.split('.')[1];
+			if (!process.env.hasOwnProperty(index))
+				console.log('Warning: macro ' + value + ' is not defined');
+			else
+				str = str.replace(value, process.env[index]);
+		}
+	}
+
 	const substitutions = str.match(macroRegex);
 	if (substitutions == null)
 		return str;
