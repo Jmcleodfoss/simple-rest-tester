@@ -9,7 +9,7 @@ const schemes = {
 };
 
 var debug = process.env.SRT_DEBUG || false;
-var responses = {};
+var macros = {};
 
 const macroRegex = /\${[^}]*}(\.[A-Za-z_][0-9A-Za-z_]*)?/g;
 const envMacroRegex = /\${env}(\.([A-Za-z_][0-9A-Za-z_]*))/g;
@@ -17,7 +17,7 @@ const envMacroRegex = /\${env}(\.([A-Za-z_][0-9A-Za-z_]*))/g;
 /* Add a user-defined macro */
 exports.addMacro = (macro, substitution) =>
 {
-	responses['${' + macro + '}'] = substitution;
+	macros['${' + macro + '}'] = substitution;
 }
 
 /* Save results of query for future tests to use in a ${A}.b macro */
@@ -26,7 +26,7 @@ function saveMacros(prefix, responseStr)
 	const responseObject = JSON.parse(responseStr);
 	Object.keys(responseObject).forEach(function(key){
 		const index = '${' + prefix + '}.' + key;
-		responses[index] = responseObject[key];
+		macros[index] = responseObject[key];
 	});
 }
 
@@ -51,10 +51,10 @@ function substituteMacros(str)
 	for (const value of substitutions) {
 		// Use of groups in rexexp means we need to make sure we are only substituting full macro values, not the optional qualifier');
 		if (value.charAt(0) == '$' && !value.match(envMacroRegex)) {
-			if (!responses.hasOwnProperty(value))
+			if (!macros.hasOwnProperty(value))
 				console.log('Warning: macro ' + value + ' is not defined');
 			else
-				str = str.replace(value, responses[value]);
+				str = str.replace(value, macros[value]);
 		}
 	}
 	return str;
