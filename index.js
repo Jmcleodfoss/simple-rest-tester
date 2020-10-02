@@ -14,7 +14,7 @@ var macros = {};
 const macroRegex = /\${[^}]*}(\.[A-Za-z_][0-9A-Za-z_]*)?/g;
 const envMacroRegex = /\${env}(\.([A-Za-z_][0-9A-Za-z_]*))/g;
 
-/* Add a user-defined macro */
+/* Add a user-defined macro. The macro parameter should not have ${}, or it will be saved as ${${...}}. */
 exports.addMacro = (macro, substitution) =>
 {
 	macros['${' + macro + '}'] = substitution;
@@ -30,7 +30,7 @@ function saveMacros(prefix, responseStr)
 	});
 }
 
-/* Perform ${A}.b macro substitution */
+/* Perform ${A}.b, ${A}, and ${env}.b macro substitution */
 function substituteMacros(str)
 {
 	const envSubstitutions = str.match(envMacroRegex);
@@ -60,6 +60,7 @@ function substituteMacros(str)
 	return str;
 }
 
+/* Do testing for given request description object via Mocha.js */
 exports.mocha = (reqDescr) =>
 {
 	const scheme = schemes[reqDescr.scheme];
@@ -115,7 +116,7 @@ exports.mocha = (reqDescr) =>
 	});
 }
 
-/** Apply all macro substitutions in the test object */
+/* Apply all macro substitutions in the test object */
 exports.applyMacros = (reqDescr) =>
 {
 	for (const m of Object.keys(reqDescr)) {
