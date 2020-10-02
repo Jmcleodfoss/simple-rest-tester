@@ -15,6 +15,12 @@ var responses = {};
 const macroRegex = /\${[^}]*}(\.[A-Za-z_][0-9A-Za-z_]*)?/g;
 const envMacroRegex = /\${env}(\.([A-Za-z_][0-9A-Za-z_]*))/g;
 
+/* Add a user-defined macro */
+exports.addMacro = (macro, substitution) =>
+{
+	responses['${' + macro + '}'] = substitution;
+}
+
 /* Save results of query for future tests to use in a ${A}.b macro */
 function saveMacros(prefix, responseStr)
 {
