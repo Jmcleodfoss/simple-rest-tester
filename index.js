@@ -1,7 +1,6 @@
 "use strict";
 
 const path = require('path');
-
 const chai = require('chai');
 const expect = chai.expect;
 const schemes = {
