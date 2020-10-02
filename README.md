@@ -74,7 +74,8 @@ Invoke *mocha* in the directory containing the above script to run the tests.
 
 ## Macros
 Within a given run of a suite of tests, it is possible to save information returned in one test for use in a later test, for example,
-saving the returned item index from a POST request to use in a DELETE, GET, or PUT request.
+saving the returned item index from a POST request to use in a DELETE, GET, or PUT request. Macros may appear in any string value in
+the test object, although they are most useful in the `path` and `payload` values.
 
 ### Saving Data
 To save the response from a test, the following elements need to be defined in the test object:
@@ -85,7 +86,7 @@ The test must return an object like `{"addedItemIndex":"193"}`.
 
 ### Referring to Saved Data
 To refer to saved information in a later test, use a macro with the format `${saved-testname}.member`, e.g. `${POST_item_200}.addedItemIndex`. 
-All occurrences of this macro in either the URL path or the body will be replaced with the value returned by the named test.
+All occurrences of this macro will be replaced with the value returned by the named test.
 A path containing a macro (in the `options` structure):
 ```
 "path": "/v1/item/${POST_item_200}.addedItemIndex?queryParameter=1
@@ -96,13 +97,26 @@ After macro replacement, this will become (using our example `addedItemIndex` fr
 ```
 Similar substitutions can take place in the payload object.
 
+## Environment Substitutions
+You may refer to environment variable values in macros of the form `${env}.ENVIRONMENT_VARIABLE_NAME}`. A very contrived example is `${emv}.PATH` will be expanded to your path.
+Note (a) that case is important, and (b), if you have a test which saves results under the prefix `${env}`, it won't be picked up.
+
+## User-Defined Macros
+You may also add macros programatically using the `addMacros` function:
+```
+"use strict";
+
+const srt = require('simple-rest-tester');
+
+srt.addMacro('user-defined', 'User-defined macro goes here.');
+srt.addMacro('timestamp', new Date().getTime());
+```
+This will result in any occurences of `${user-defined}` being replaced by the string "User-defined macro goes here.", and `${timestamp}` being replaced by the timestamped 
+grabbed by node when the program was executed.
+
 ## Debugging
 Basic logging to console of the path, payload, status code, and response, is available by setting the environment variable `SRT_TEST=1`
 
 ## Releases
 ### 1.0.0
 Initial release. Functionality to be improved as demand requires and time permits.
-
-
-
-
