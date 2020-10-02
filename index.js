@@ -45,7 +45,7 @@ function substituteMacros(str)
 
 	for (const value of substitutions) {
 		// Use of groups in rexexp means we need to make sure we are only substituting full macro values, not the optional qualifier');
-		if (value.charAt(0) == '$') {
+		if (value.charAt(0) == '$' && !value.match(envMacroRegex)) {
 			if (!responses.hasOwnProperty(value))
 				console.log('Warning: macro ' + value + ' is not defined');
 			else
