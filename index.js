@@ -30,8 +30,12 @@ function substituteMacros(str)
 	if (substitutions == null)
 		return str;
 
-	for (const value of substitutions)
-		str = str.replace(value, responses[value]);
+	for (const value of substitutions) {
+		if (!responses.hasOwnProperty(value))
+			console.log('Warning: macro ' + value + ' is not defined');
+		else
+			str = str.replace(value, responses[value]);
+	}
 	return str;
 }
 
