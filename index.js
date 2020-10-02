@@ -12,7 +12,7 @@ const schemes = {
 var debug = process.env.SRT_DEBUG || false;
 var responses = {};
 
-const macroRegex = /\${[^}]*}(\.[A-Za-z_][0-9A-Za-z_]*)?/;
+const macroRegex = /\${[^}]*}(\.[A-Za-z_][0-9A-Za-z_]*)?/g;
 const envMacroRegex = /\${env}(\.([A-Za-z_][0-9A-Za-z_]*))/g;
 
 /* Save results of query for future tests to use in a ${A}.b macro */
