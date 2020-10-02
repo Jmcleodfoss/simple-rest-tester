@@ -44,10 +44,13 @@ function substituteMacros(str)
 		return str;
 
 	for (const value of substitutions) {
-		if (!responses.hasOwnProperty(value))
-			console.log('Warning: macro ' + value + ' is not defined');
-		else
-			str = str.replace(value, responses[value]);
+		// Use of groups in rexexp means we need to make sure we are only substituting full macro values, not the optional qualifier');
+		if (value.charAt(0) == '$') {
+			if (!responses.hasOwnProperty(value))
+				console.log('Warning: macro ' + value + ' is not defined');
+			else
+				str = str.replace(value, responses[value]);
+		}
 	}
 	return str;
 }
