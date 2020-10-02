@@ -33,7 +33,7 @@ function substituteMacros(str)
 		for (const value of envSubstitutions) {
 			const index = value.split('.')[1];
 			if (!process.env.hasOwnProperty(index))
-				console.log('Warning: macro ' + value + ' is not defined');
+				console.log('Warning: ${env} macro ' + value + ' is not defined');
 			else
 				str = str.replace(value, process.env[index]);
 		}
