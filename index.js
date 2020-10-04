@@ -72,7 +72,7 @@ exports.mocha = (reqDescr) =>
 		let statusCode;
 		let responseStr = '';
 
-		reqDescr = applyMacros(reqDescr);
+		reqDescr = exports.applyMacros(reqDescr);
 
 		beforeEach(function(done){
 			if (debug)
@@ -123,7 +123,7 @@ exports.applyMacros = (reqDescr) =>
 		if (typeof reqDescr[m] === 'string')
 			reqDescr[m] = substituteMacros(reqDescr[m]);
 		else if (typeof reqDescr[m] === 'object')
-			reqDescr[m] = this.applyMacros(reqDescr[m]);
+			reqDescr[m] = exports.applyMacros(reqDescr[m]);
 	}
 	return reqDescr;
 }
