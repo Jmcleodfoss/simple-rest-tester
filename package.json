@@ -2,7 +2,7 @@
 	"name": "simple-rest-tester",
 	"version": "1.0.0",
 	"description": "Simple JSON-driven test framework for REST APIs",
-	"keywords": "mocha,regexp,tdd",
+	"keywords": "mocha,tdd",
 	"homepage": "https://github.com/Jmcleodofoss/simple-rest-tester",
 	"bugs": {
 		"url": "https://github.com/Jmcleodfoss/simple-rest-tester/issues",
@@ -15,7 +15,8 @@
 	},
 	"files": [
 		"bin/simple-rest-tester.js",
-		"bin/srt-expand-macros.js"
+		"bin/srt-expand-macros.js",
+		"bin/srt-generator.js"
 	],
 	"main": "index.js",
 	"repository": {
@@ -23,17 +24,20 @@
 		"url": "https://github.Jmcleodfoss/simple-rest-tester"
 	},
 	"dependencies": [
+		"swagger-parser",
 		"chai",
 		"command-line-args",
 		"command-line-usage",
 		"glob",
-		"mocha"
+		"mocha",
+		"openapi-types"
 	],
 	"engines": {
 		"node": ">=12.18.0"
 	},
 	"bin": {
 		"simple-rest-tester": "bin/simple-rest-tester.js",
-		"srt-expand-macros": "bin/srt-expand-macros.js"
+		"srt-expand-macros": "bin/srt-expand-macros.js",
+		"srt-generator": "bin/srt-generator.js"
 	}
 }
