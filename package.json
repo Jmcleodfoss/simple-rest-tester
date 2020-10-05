@@ -14,7 +14,8 @@
 		"email": "jmcleodfoss@gmail.com"
 	},
 	"files": [
-		"bin/simple-rest-tester.js"
+		"bin/simple-rest-tester.js",
+		"bin/srt-expand-macros.js"
 	],
 	"main": "index.js",
 	"repository": {
@@ -23,12 +24,16 @@
 	},
 	"dependencies": [
 		"chai",
+		"command-line-args",
+		"command-line-usage",
+		"glob",
 		"mocha"
 	],
 	"engines": {
 		"node": ">=12.18.0"
 	},
 	"bin": {
-		"simple-rest-tester": "bin/simple-rest-tester.js"
+		"simple-rest-tester": "bin/simple-rest-tester.js",
+		"srt-expand-macros": "bin/srt-expand-macros.js"
 	}
 }
