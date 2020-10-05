@@ -77,8 +77,10 @@ exports.mocha = (reqDescr) =>
 
 			if (debug)
 				console.log('path: ' + reqDescr.options.path);
+
 			req = scheme.request(reqDescr.options, function(response) {
 				responseStr = '';
+
 				response.on('data', function(chunk){
 					responseStr += chunk;
 				});
