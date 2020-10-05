@@ -14,7 +14,7 @@
 		"email": "jmcleodfoss@gmail.com"
 	},
 	"files": [
-		"simple-rest-tester.js"
+		"bin/simple-rest-tester.js"
 	],
 	"main": "index.js",
 	"repository": {
@@ -27,5 +27,8 @@
 	],
 	"engines": {
 		"node": ">=12.18.0"
+	},
+	"bin": {
+		"simple-rest-tester": "bin/simple-rest-tester.js"
 	}
 }
