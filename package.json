@@ -16,7 +16,7 @@
 	"files": [
 		"simple-rest-tester.js"
 	],
-	"main": "simple-rest-tester",
+	"main": "index.js",
 	"repository": {
 		"type": "git",
 		"url": "https://github.Jmcleodfoss/simple-rest-tester"
