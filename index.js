@@ -72,9 +72,9 @@ exports.mocha = (reqDescr) =>
 		let statusCode;
 		let responseStr = '';
 
-		reqDescr = exports.applyMacros(reqDescr);
-
 		beforeEach(function(){
+			reqDescr = exports.applyMacros(reqDescr);
+
 			if (debug)
 				console.log('path: ' + reqDescr.options.path);
 			req = scheme.request(reqDescr.options, function(response) {
