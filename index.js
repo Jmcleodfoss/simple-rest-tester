@@ -65,7 +65,7 @@ exports.mocha = (reqDescr) =>
 {
 	const scheme = schemes[reqDescr.scheme];
 
-	describe(reqDescr.description, function(done){
+	describe(reqDescr.description, function(){
 		this.timeout(reqDescr.timeout || 2000);
 
 		let req;
@@ -74,7 +74,7 @@ exports.mocha = (reqDescr) =>
 
 		reqDescr = exports.applyMacros(reqDescr);
 
-		beforeEach(function(done){
+		beforeEach(function(){
 			if (debug)
 				console.log('path: ' + reqDescr.options.path);
 			req = scheme.request(reqDescr.options, function(response) {
@@ -85,13 +85,11 @@ exports.mocha = (reqDescr) =>
 				response.on('end', function(chunk){});
 				statusCode = response.statusCode;
 			});
-			done();
 		});
 
-		after(function(done){
+		after(function(){
 			if (reqDescr.saveResponse && statusCode == 200)
 				saveMacros(reqDescr.testname, responseStr);
-			done();
 		});
 
 		it(reqDescr.expectation, async function(){
