@@ -22,7 +22,8 @@
 		"url": "https://github.Jmcleodfoss/simple-rest-tester"
 	},
 	"dependencies": [
-		"chai"
+		"chai",
+		"mocha"
 	],
 	"engines": {
 		"node": ">=12.18.0"
