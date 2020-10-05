@@ -98,7 +98,7 @@ exports.mocha = (reqDescr) =>
 			if (reqDescr.hasOwnProperty('payload')) {
 				if (debug)
 					console.log('payload: ' + JSON.stringify(payload));
-				req.write(payload);
+				req.write(JSON.stringify(reqDescr.payload));
 			}
 			req.end();
 
