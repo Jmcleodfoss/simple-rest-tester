@@ -82,14 +82,13 @@ exports.mocha = (reqDescr) =>
 				response.on('data', function(chunk){
 					responseStr += chunk;
 				});
-				response.on('end', function(chunk){});
-				statusCode = response.statusCode;
-			});
-		});
 
-		after(function(){
-			if (reqDescr.saveResponse && statusCode == 200)
-				saveMacros(reqDescr.testname, responseStr);
+				response.on('end', function(chunk) {
+					if (reqDescr.saveResponse && response.statusCode == 200)
+						saveMacros(reqDescr.testname, responseStr);
+					statusCode = response.statusCode;
+				});
+			});
 		});
 
 		it(reqDescr.expectation, async function(){
