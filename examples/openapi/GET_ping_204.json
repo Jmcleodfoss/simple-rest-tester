@@ -1,6 +1,6 @@
 {
   "testname": "GET_ping_204",
-  "description": "GET /v1/ping test by ${env}.USER starting at ${timestamp}",
+  "description": "GET /v1/ping",
   "expectation": "Return 204 if server is running",
   "status": "204",
   "responseRegexp": ".*",
