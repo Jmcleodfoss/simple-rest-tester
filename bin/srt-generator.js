@@ -31,7 +31,7 @@ if (options.help) {
 			optionList: optionDefinitions
 		},
 		{
-			content: 'Project home: {underline https://github.com/jmcleodfoss/srt-generator}'
+			content: 'Project home: {underline https://github.com/jmcleodfoss/simple-rest-tester}'
 		}
 	]);
 	console.log(usage);
