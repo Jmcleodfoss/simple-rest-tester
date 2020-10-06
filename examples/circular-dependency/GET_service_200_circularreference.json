@@ -1,0 +1,18 @@
+{
+  "testname": "GET_service_200_circularreference",
+  "description": "GET /v1/service/{itemId} test by ${env}.USER starting at ${timestamp}",
+  "expectation": "should return the requested item",
+  "status": "200",
+  "responseRegexp": "{\"itemid\":\\d+}",
+  "scheme": "http",
+  "options": {
+    "host": "localhost",
+    "port": "3000",
+    "path": "/v1/service/${POST_service_200_circularreference}.itemid",
+    "method": "GET",
+    "headers": {
+      "accept": "application/json"
+    }
+  },
+  "saveResponse": true
+}

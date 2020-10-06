@@ -1,0 +1,23 @@
+{
+  "testname": "POST_service_200_circularreference",
+  "description": "POST /v1/service test by ${env}.USER starting at ${timestamp}",
+  "expectation": "should return the new item index",
+  "status": "200",
+  "responseRegexp": "{\"itemid\":\\d+}",
+  "scheme": "http",
+  "options": {
+    "host": "localhost",
+    "port": "3000",
+    "path": "/v1/service?userId=1&${GET_service_200_circularreference}.itemid",
+    "method": "POST",
+    "headers": {
+      "Content-Type": "application/json",
+      "accept": "application/json"
+    }
+  },
+  "payload": {
+    "itemStr": "item data",
+    "itemNumeric": 12346
+  },
+  "saveResponse": true
+}
