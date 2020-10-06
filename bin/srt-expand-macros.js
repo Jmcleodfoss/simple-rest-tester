@@ -8,9 +8,9 @@ const srt = require('../index.js');
 
 const optionDefinitions = [
 	{ name: 'help', alias: 'h', type: Boolean, description: 'Display this usage guide' },
-	{ name: 'define', alias: 'D', type: String, lazyMultiple: true, description: 'Define macro as macro=substotution' }
+	{ name: 'define', alias: 'D', type: String, lazyMultiple: true, description: 'Define macro as macro=substitution' }
 ];
-const commandlineHelpTemplate = basename(process.argv[1], ".js") + '[-h | [-D macro-1=value-1 [-D acro-2=value2 [...]]] test-definition [test-definition [...]]]';
+const commandlineHelpTemplate = basename(process.argv[1], ".js") + '[-h | [-D macro-1=value-1 [-D macro-2=value2 [...]]] test-definition [test-definition [...]]]';
 const options = CommandLineArgs(optionDefinitions, { partial: true });
 if (options.help) {
 	const usage = CommandLineUsage([
@@ -46,6 +46,7 @@ if (options.hasOwnProperty('define')) {
 			console.log('Error: -D macro must have the form macro=substitution.');
 			process.exit(1);
 		}
+
 		srt.addMacro(macro.substring(0, index), macro.substring(index+1));
 	}
 }
