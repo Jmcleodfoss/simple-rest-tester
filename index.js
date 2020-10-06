@@ -17,7 +17,9 @@ const envMacroRegex = /\${env}(\.([A-Za-z_][0-9A-Za-z_]*))/g;
 /* Add a user-defined macro. The macro parameter should not have ${}, or it will be saved as ${${...}}. */
 exports.addMacro = (macro, substitution) =>
 {
-	macros['${' + macro + '}'] = substitution;
+	if (!macro.match(macroRegex))
+		macro = '${' + macro + '}';
+	macros[macro] = substitution;
 }
 
 /* Save results of query for future tests to use in a ${A}.b macro */
