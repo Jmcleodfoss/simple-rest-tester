@@ -1,0 +1,21 @@
+{
+  "testname": "PUT_point_404",
+  "description": "PUT /v1/point/{point_id}",
+  "expectation": "should return 404 not found for unknown point",
+  "status": "404",
+  "responseRegexp": ".*",
+  "scheme": "http",
+  "options": {
+    "host": "localhost",
+    "port": "3000",
+    "path": "/v1/point/{point_id}?user_id=1",
+    "method": "PUT",
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  },
+  "payload": {
+    "x": 0,
+    "y": 1
+  }
+}

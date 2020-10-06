@@ -1,0 +1,14 @@
+{
+  "testname": "DELETE_point_404",
+  "description": "DELETE /v1/point/{point_id}",
+  "expectation": "should fail to delete the given point because it doesn't exist",
+  "status": "404",
+  "responseRegexp": ".*",
+  "scheme": "http",
+  "options": {
+    "host": "localhost",
+    "port": "3000",
+    "path": "/v1/point/{point_id}?user_id=1",
+    "method": "DELETE"
+  }
+}

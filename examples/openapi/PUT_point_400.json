@@ -1,0 +1,21 @@
+{
+  "testname": "PUT_point_400",
+  "description": "PUT /v1/point/{point_id}",
+  "expectation": "should fail because the point data is invalid",
+  "status": "400",
+  "responseRegexp": ".*",
+  "scheme": "http",
+  "options": {
+    "host": "localhost",
+    "port": "3000",
+    "path": "/v1/point/{point_id}",
+    "method": "PUT",
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  },
+  "payload": {
+    "x": "YYZ",
+    "y": 0
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "testname": "GET_point_200",
+  "description": "GET /v1/point/{point_id}",
+  "expectation": "should return the requested point",
+  "status": "200",
+  "responseRegexp": ".*",
+  "scheme": "http",
+  "options": {
+    "host": "localhost",
+    "port": "3000",
+    "path": "/v1/point/{point_id}",
+    "method": "GET",
+    "headers": {
+      "accept": "application/json"
+    }
+  }
+}

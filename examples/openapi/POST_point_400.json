@@ -1,0 +1,21 @@
+{
+  "testname": "POST_point_400",
+  "description": "POST /v1/point",
+  "expectation": "should fail because the point data is invalid",
+  "status": "400",
+  "responseRegexp": ".*",
+  "scheme": "http",
+  "options": {
+    "host": "localhost",
+    "port": "3000",
+    "path": "/v1/point?user_id=1",
+    "method": "POST",
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  },
+  "payload": {
+    "x": "YYZ",
+    "y": 0
+  }
+}

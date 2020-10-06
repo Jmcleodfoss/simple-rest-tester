@@ -1,0 +1,21 @@
+{
+  "testname": "PUT_point_204_point90Degrees",
+  "description": "PUT /v1/point/{point_id}",
+  "expectation": "should update the new point",
+  "status": "204",
+  "responseRegexp": "{\"pid\":\\d+}",
+  "scheme": "http",
+  "options": {
+    "host": "localhost",
+    "port": "3000",
+    "path": "/v1/point/{point_id}?user_id=1",
+    "method": "PUT",
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  },
+  "payload": {
+    "x": 0,
+    "y": 1
+  }
+}

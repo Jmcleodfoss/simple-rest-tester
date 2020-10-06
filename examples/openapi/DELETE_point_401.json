@@ -1,0 +1,14 @@
+{
+  "testname": "DELETE_point_401",
+  "description": "DELETE /v1/point/{point_id}",
+  "expectation": "should fail to delete the given point because the user doesn't have permission",
+  "status": "401",
+  "responseRegexp": ".*",
+  "scheme": "http",
+  "options": {
+    "host": "localhost",
+    "port": "3000",
+    "path": "/v1/point/{point_id}?user_id=2",
+    "method": "DELETE"
+  }
+}

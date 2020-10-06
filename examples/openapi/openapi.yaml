@@ -1,0 +1,239 @@
+openapi: "3.0.0"
+info:
+  description: "This is a toy openapi specification to show how srt-generator creates test cases."
+  version: "1.0.0"
+  title: "Simple Rest Tester Example"
+servers:
+  - url: "http://localhost:3000/v1"
+    description: "Development server"
+tags:
+- name: "point"
+  description: "A point in the Cartesian plane"
+- name: "ping"
+  description: "Health check"
+
+paths:
+  /ping:
+    get:
+      description: "Confirm the server is up"
+      summary: "Check whether the server is up"
+      operationId: "ping"
+      tags:
+      - "ping"
+      responses:
+        "204":
+          description: "Server okay"
+          x-srt:
+            expectation: "Return 204 if server is running"
+
+  /point:
+    post:
+      description: "Save a point in the 2D plane"
+      summary: "Create a point"
+      operationId: "add_point"
+      tags:
+      - "point"
+      parameters:
+      - $ref: "#/components/parameters/UserId"
+      requestBody:
+        description: "The coordinates of a point"
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Coordinates"
+            examples:
+              pointOrigin:
+                $ref: "#/components/examples/pointOrigin"
+      responses:
+        "200":
+          description: "ID of added point"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PointId"
+          x-srt:
+            responseRegexp: "{\"pid\":\\d+}"
+            expectation: "should return the new point index"
+          links:
+            DeletePoint:
+              operationId: "delete_ppoint"
+              parameters:
+                pointId: "$response.body.pid"
+                description: "The `pid` value returned in the response may be used as the `pointId` parameter in `DELETE /point/{pointId}`."
+            GetPointById:
+              operationId: "get_point_by_id"
+              parameters:
+                pointId: "$response.body.pid"
+                description: "The `pid` value returned in the response may be used as the `pointId` parameter in `GET /point/{pointId}`."
+            ReplacePoint:
+              operationId: "replace_ppint"
+              parameters:
+                pointId: "$response.body.pid"
+                description: "The `pid` value returned in the response may be used as the `pointId` parameter in `PUT /point/{pointId}`."
+        "400":
+          description: "Invalid coordinates"
+          x-srt:
+            expectation: "should fail because the point data is invalid"
+            path-suffix: "?user_id=1"
+            payload: { x: "YYZ", y: 0.0 }
+        "405":
+          description: "Internal server error"
+          x-srt:
+            skip-test: "true"
+
+  /point/{point_id}:
+    delete:
+      description: "Delete a point given its ID"
+      summary: "Delete a point"
+      operationId: "delete_point"
+      tags:
+      - "point"
+      parameters:
+      - $ref: "#/components/parameters/PointId"
+      - $ref: "#/components/parameters/UserId"
+      responses:
+        "204":
+          description: "Point deleted"
+          x-srt:
+            expectation: "should delete the given point"
+            path-subst: { "{pointId}": "${POST_point_200_pointOrigin.pid" }
+            path-suffix: "?user_id=1"
+        "401":
+          description: "User not authorized to update this point"
+          x-srt:
+            expectation: "should fail to delete the given point because the user doesn't have permission"
+            path-subst: { "{pointId}": "${POST_point_200_pointOrigin.pid" }
+            path-suffix: "?user_id=2"
+        "404":
+          description: "Point ID not found"
+          x-srt:
+            expectation: "should fail to delete the given point because it doesn't exist"
+            path-subst: { "{pointId}": 2147483647 }
+            path-suffix: "?user_id=1"
+
+    get:
+      description: "Return a single point's coordinates given its ID"
+      summary: "Get point coordinates by ID"
+      operationId: "get_point_by_id"
+      tags:
+      - "point"
+      parameters:
+      - $ref: "#/components/parameters/PointId"
+      responses:
+        "200":
+          description: "Point found"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Coordinates"
+          x-srt:
+            expectation: "should return the requested point"
+            path-subst: { "{pointId}": "${POST_point_200_pointOrigin}.pid" }
+        "404":
+          description: "Point ID not found"
+          x-srt:
+            expectation: "should return 404 not found for unknown point"
+            path-subst: { "{pointId}": 2147483647 }
+
+    put:
+      description: "Update a point's coordinates"
+      summary: "Update a point"
+      operationId: "replace_point"
+      tags:
+      - "point"
+      parameters:
+      - $ref: "#/components/parameters/PointId"
+      - $ref: "#/components/parameters/UserId"
+      requestBody:
+        description: "The coordinates of a point"
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Coordinates"
+            examples:
+              point90Degrees:
+                $ref: "#/components/examples/point90Degrees"
+      responses:
+        "204":
+          description: "Successfully updated point"
+          x-srt:
+            expectation: "should update the new point"
+            responseRegexp: "{\"pid\":\\d+}"
+            path-subst: { "{PointId}": "${POST_point_200_pointOrigin}.pid" }
+            path-suffix: "?user_id=1"
+        "400":
+          description: "Invalid coordinates"
+          x-srt:
+            expectation: "should fail because the point data is invalid"
+            payload: { x: "YYZ", y: 0.0 }
+        "401":
+          description: "User not authorized to update this point"
+          x-srt:
+            expectation: "should fail to update the given point because the user doesn't have permission"
+            path-subst: { "{pointId}": "${POST_point_200_pointOrigin}.pid" }
+            path-suffix: "?user_id=2"
+        "404":
+          description: "Point ID not found"
+          x-srt:
+            expectation: "should return 404 not found for unknown point"
+            path-subst: { "{pointId}": 2147483647 }
+            path-suffix: "?user_id=1"
+        "405":
+          description: "Internal server error"
+          x-srt:
+            skip-test: "true"
+
+components:
+  examples:
+    pointOrigin:
+      value:
+        x: 0.0
+        y: 0.0
+
+    point90Degrees:
+      value:
+        x: 0.0
+        y: 1.0
+
+  parameters:
+    PointId:
+      name: "point_id"
+      description: "Point GUID"
+      required: true
+      in: "path"
+      schema:
+        $ref: "#/components/schemas/PointId"
+
+    UserId:
+      name: "user_id"
+      description: "User GUID"
+      required: true
+      in: "query"
+      schema:
+        $ref: "#/components/schemas/UserId"
+
+  schemas:
+    Coordinates:
+      description: "The coordinates of a point in 2-space"
+      type: "object"
+      properties:
+        x:
+          description: "The x coordinate of the point"
+          type: "number"
+          format: "float"
+        y:
+          description: "The y coordinate of the point"
+          type: "number"
+          format: "float"
+
+    PointId:
+      description: "GUID for a point"
+      type: "integer"
+      format: "int64"
+
+    UserId:
+      description: "Database GUID for a user"
+      type: "integer"
+      format: "int64"
