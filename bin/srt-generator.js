@@ -232,8 +232,8 @@ function generate(apiSpec)
 	});
 }
 
-if (options._unknown.length == 0) {
-	console.log('use: ' + commandLineHelpTemplate);
+if (!options.hasOwnProperty('_unknown')) {
+	console.log('use: ' + commandlineHelpTemplate);
 	process.exit(1);
 }
 
