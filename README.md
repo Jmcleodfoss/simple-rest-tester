@@ -22,7 +22,7 @@ npm install simple-rest-tester
 ```
 
 ## JSON structure
-The test information is stored in a json file with the following members:
+The test information is stored in a JSON file with the following members:
 ```
 {
 	"description": /* Description of the test to be displayed by Mocha */
@@ -171,7 +171,7 @@ You may refer to environment variable values in macros of the form `${env}.ENVIR
 Note (a) that case is important, and (b), if you have a test which saves results under the prefix `${env}`, it won't be picked up.
 
 ## User-Defined Macros
-You may also add macros programatically using the `addMacros` function. This functionality is not supported when running Mocha.js via the *simple-rest-tester* application because of 
+You may also add macros programmatically using the `addMacros` function. This functionality is not supported when running Mocha.js via the *simple-rest-tester* application because of 
 complications arising from Mocha.js command line processing. These are described in more detail in the section "Rolling Your Own", below.
 
 ## Debugging
@@ -205,7 +205,7 @@ test('./POST_service_200.json')
 test('./POST_service_400.json')
 // etc
 ```
-This will result in any occurences of `${user-defined}` in the test specification being replaced by the string "User-defined macro goes here.", and `${timestamp}` being replaced by the timestamped 
+This will result in any occurrences of `${user-defined}` in the test specification being replaced by the string "User-defined macro goes here.", and `${timestamp}` being replaced by the timestamped 
 grabbed by node when the program was executed.
 
 Invoke *mocha* in the directory containing the above script to run the tests.
@@ -219,7 +219,7 @@ where
 * -h / --help              Display this usage guide
 * -D / --define string[]   Define macro as macro=substitution (this can appear multiple times)
 
-Macros can be either response-style macros (${a}.b=valu} or simple substitutions (${a}=value).
+Macros can be either response-style macros (${a}.b=value} or simple substitutions (${a}=value).
 
 ## Releases
 ### 1.0.0
