@@ -29,7 +29,6 @@
 		"command-line-args",
 		"command-line-usage",
 		"glob",
-		"mocha",
 		"openapi-types"
 	],
 	"engines": {
@@ -39,5 +38,8 @@
 		"simple-rest-tester": "bin/simple-rest-tester.js",
 		"srt-expand-macros": "bin/srt-expand-macros.js",
 		"srt-generator": "bin/srt-generator.js"
+	},
+	"scripts": {
+		"preinstall": "npm list -g mocha || npm install -g mocha"
 	}
 }
