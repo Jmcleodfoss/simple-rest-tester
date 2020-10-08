@@ -14,9 +14,31 @@
 		"email": "jmcleodfoss@gmail.com"
 	},
 	"files": [
+		"index.js",
+		"package.json",
+		"package-lock.json",
 		"bin/simple-rest-tester.js",
 		"bin/srt-expand-macros.js",
-		"bin/srt-generator.js"
+		"bin/srt-generator.js",
+		"examples/circular-dependency/GET_service_200_circularreference.json",
+		"examples/circular-dependency/POST_service_200_circularreference.json",
+		"examples/GET_service_200.json",
+		"examples/openapi/DELETE_point_204.json",
+		"examples/openapi/DELETE_point_401.json",
+		"examples/openapi/DELETE_point_404.json",
+		"examples/openapi/GET_ping_204.json",
+		"examples/openapi/GET_point_200.json",
+		"examples/openapi/GET_point_404.json",
+		"examples/openapi/openapi.yaml",
+		"examples/openapi/POST_point_200_pointOrigin.json",
+		"examples/openapi/POST_point_400.json",
+		"examples/openapi/PUT_point_204_point90Degrees.json",
+		"examples/openapi/PUT_point_400.json",
+		"examples/openapi/PUT_point_401.json",
+		"examples/openapi/PUT_point_404.json",
+		"examples/POST_service_200.json",
+		"examples/POST_service_400.json",
+		"examples/test.js"
 	],
 	"main": "index.js",
 	"repository": {
