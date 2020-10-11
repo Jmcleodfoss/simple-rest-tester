@@ -215,7 +215,7 @@ function generate(apiSpec)
 				for (const response in methodObject.responses) {
 					const responseObject = methodObject.responses[response];
 					const srtObject = responseObject.hasOwnProperty(SRTDataKey) ? responseObject[SRTDataKey] : null;
-					if (getSchemaSRTValue(srtObject, 'skip-test', false))
+					if (srtObject == null || getSchemaSRTValue(srtObject, 'skip-test', false))
 						continue;
 					for (const example in examples){
 						const test = createTest(scheme, host, port, method, methodObject, pathPrefix, path, response, responseObject, srtObject, contentType, example, examples[example]);
