@@ -97,7 +97,9 @@ This provides a regexp matching the expected response from the server. If it is 
 This extension is used to build the `path` member of the test object.
 
 #### paths.path.method.responses.response.x-srt.skip-test
-This extension should be used with responses for which no test case is desired.
+This extension may be used with responses for which no test case is desired, Starting with version 1.0.1, this is unnecessary as no
+tests will be generated for responses with no x-srt member, but it remains and is not deprecated for those who choose to distinguish
+between responses which have not been considered and those which have been explicitly ignored.
 
 #### paths.path.method.responses.response.x-srt.payload
 This extension should be used to provide a payload for tests which do not use the paths.path.method.requestBody.content.application/json/examples element to provide the body of a request.
@@ -222,5 +224,11 @@ where
 Macros can be either response-style macros (${a}.b=value} or simple substitutions (${a}=value).
 
 ## Releases
+### 1.0.1
+Fix typo in homepage URL in package.json.
+Add a keyword to package.json
+#### srt-generator
+Don't create tests for responses without an x-srt element.
+
 ### 1.0.0
 Initial release. Functionality to be improved as demand requires and time permits.
