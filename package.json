@@ -2,7 +2,7 @@
 	"name": "simple-rest-tester",
 	"version": "1.0.0",
 	"description": "Simple JSON-driven test framework for REST APIs",
-	"keywords": "mocha,tdd",
+	"keywords": "mocha,tdd,openapi",
 	"homepage": "https://github.com/Jmcleodofoss/simple-rest-tester",
 	"bugs": {
 		"url": "https://github.com/Jmcleodfoss/simple-rest-tester/issues",
