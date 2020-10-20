@@ -7,6 +7,6 @@
     "mocha": true,
 
     // Options
-    "iterator": true,
+    "iterator": false,
     "sub": true
 }
