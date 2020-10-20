@@ -20,7 +20,7 @@ exports.addMacro = (macro, substitution) =>
 	if (!macro.match(macroRegex))
 		macro = '${' + macro + '}';
 	macros[macro] = substitution;
-}
+};
 
 /* Save results of query for future tests to use in a ${A}.b macro */
 function saveMacros(prefix, responseStr)
@@ -115,7 +115,7 @@ exports.mocha = (reqDescr) =>
 				expect(responseStr).to.match(new RegExp(reqDescr.returnRegEx));
 		});
 	});
-}
+};
 
 /* Apply all macro substitutions in the test object */
 exports.applyMacros = (reqDescr) =>
@@ -127,4 +127,4 @@ exports.applyMacros = (reqDescr) =>
 			reqDescr[m] = exports.applyMacros(reqDescr[m]);
 	}
 	return reqDescr;
-}
+};

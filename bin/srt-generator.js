@@ -74,7 +74,7 @@ async function getFinalFilename(filename)
 			if (fs.existsSync(filename))
 				getOldFileDisposition(filename, rl);
 		});
-	}
+	};
 
 	const rl = readline.createInterface({
 		input: process.stdin,
