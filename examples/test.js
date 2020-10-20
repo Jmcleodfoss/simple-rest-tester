@@ -13,7 +13,7 @@ function test(jsonFile)
 }
 
 // Order of tests is important if you are using macros ore relying on the existence of resources created by earlier tests in later tests
-test('./GET_ping_204.json')
-test('./POST_service_200.json')
-test('./POST_service_400.json')
+test('./GET_ping_204.json');
+test('./POST_service_200.json');
+test('./POST_service_400.json');
 // etc
