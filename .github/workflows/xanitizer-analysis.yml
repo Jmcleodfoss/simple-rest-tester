@@ -64,7 +64,7 @@ jobs:
       # Please adapt, if your project uses another package manager for getting JavaScript libraries.
       # Please comment out, if your project does not use a package manager for getting JavaScript libraries.
       - name: Install JavaScript libraries
-        run: npm install
+        run: sudo npm install
 
       # Run the security analysis with default settings
       - name: Xanitizer Security Analysis
