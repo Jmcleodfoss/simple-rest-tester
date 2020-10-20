@@ -4,7 +4,9 @@
 
     // Environment
     "node": true,
+    "mocha": true,
 
     // Options
+    "iterator": true,
     "sub": true
 }
