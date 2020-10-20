@@ -70,11 +70,11 @@ where
 * -s # / --server=#: pull scheme, host, and port from the definition for server index `#` instead of from server index 0
 
 ### Standard Elements Used
-* servers[0]: used to find the scheme, hostname, port, and path prefix, if any.
-* paths.path: used to create the `testname` member, the filename, the test description, and the URL `path` member for the http/https `options` object.
-* paths.path.method: used to create the `testname` member, the filename, and the `method` member of the http/https `options` object.
-* paths.path.method.requestBody.content.application/json.examples: used for the payload and as a suffix for the filename for POST and PUT requests.
-* paths.method.responses.response: used for the expected returned status from the server
+* `servers[0]`: used to find the scheme, hostname, port, and path prefix, if any.
+* `paths.path`: used to create the `testname` member, the filename, the test description, and the URL `path` member for the http/https `options` object.
+* `paths.path.method`: used to create the `testname` member, the filename, and the `method` member of the http/https `options` object.
+* `paths.path.method.requestBody.content.application/json.examples`: used for the payload and as a suffix for the filename for POST and PUT requests.
+* `paths.method.responses.response`: used for the expected returned status from the server
 
 ### Vendor Extensions
 The OpenAPI specification does not include quite enough information to make tests useful. The vendor extension element `x-srt` allows srt-generator to create tests which are more than just stubs that need to be filled in.
