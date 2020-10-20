@@ -1,0 +1,12 @@
+{
+    // JSHint Default Configuration File (as on JSHint website)
+    // See http://jshint.com/docs/ and https://github.com/jshint/jshint/blob/master/examples/.jshintrc for more details
+
+    // Environment
+    "node": true,
+    "mocha": true,
+
+    // Options
+    "iterator": true,
+    "sub": true
+}
