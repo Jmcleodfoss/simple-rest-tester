@@ -115,7 +115,7 @@ function getExamples(methodObject, contentType)
 		const requestBody = methodObject.requestBody;
 		if (requestBody.content.hasOwnProperty(contentType)) {
 			if (requestBody.content[contentType].hasOwnProperty('examples'))
-				return requestBody.content[contentType].examples
+				return requestBody.content[contentType].examples;
 		}
 
 		return { '': requestBody.content[contentType].schema };
@@ -203,7 +203,7 @@ function generate(apiSpec)
 
 		const urlParts = api.servers[serverIndex].url.match(urlRegexp);
 		const scheme = urlParts[1];
-		const host = urlParts[2]
+		const host = urlParts[2];
 		const port = urlParts[4];
 		const pathPrefix = urlParts[5] || '';
 
