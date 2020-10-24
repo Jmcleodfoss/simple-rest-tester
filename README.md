@@ -2,12 +2,12 @@
 # simple-rest-tester
 A simplistic test harness for REST APIs which uses [node.js](http://nodejs.org), [Mocha](http://mochajs.node), and [Chai.js](www.chaijs.com), and JSON files defining test parameters 
 and expected results to run simple REST API tests with the following characteristics:
-* a deterministic return value
-* a response code
+*  a deterministic return value
+*  a response code
 The *simple-rest-tester* package includes three applications:
-* simple-rest-tester, which runs tests on all JSON files in the current directory, handling dependencies (for tests which use the results of other tests)
-* srt-generator, which creates test JSON files from an [OpenAPI 3](https://swagger.io/specification/) specification with a small number of vendor extensions described below
-* srt-expand-macros, which allows you to show what a test file looks like after macro replacement for macros defined at the command line and using environment variables
+*  simple-rest-tester, which runs tests on all JSON files in the current directory, handling dependencies (for tests which use the results of other tests)
+*  srt-generator, which creates test JSON files from an [OpenAPI 3](https://swagger.io/specification/) specification with a small number of vendor extensions described below
+*  srt-expand-macros, which allows you to show what a test file looks like after macro replacement for macros defined at the command line and using environment variables
 There is also an API for use if your testing needs are more complicated than what can be handled by the *simple-rest-tester* application (for example, you need to run tests in a 
 specific order different from that used by the provided application).
 
@@ -54,7 +54,7 @@ The test information is stored in a JSON file with the following members:
 *  The value of `testname` is used in macros to refer to returned results in later tests. See "macros" below for more information. It is only necessary if saveResponse is true. By convention, it has the format METHOD_service_response, e.g. POST_myservice_200.
 *  The value of `scheme` is used with a`require` command to create an http or https object.
 *  The value of `payload` is written into the POST or PUT request.
-* The `options` object is the passed into the [http.request](https://nodejs.org/api/http.html#http_http_request_options_callback) or
+*  The `options` object is the passed into the [http.request](https://nodejs.org/api/http.html#http_http_request_options_callback) or
 [https.request](https://nodejs.org/api/https.html#https_https_request_options_callback) function.
 
 ## Test File Names
@@ -65,17 +65,17 @@ e.g. POST_myservice_200.json, but you may pick whatever convention you like.
 ### Running srt-generator
 `srt-generator [--help|-h] | [--overwrite|-O] [--quiet|-q] [--server=#|-s #] openapi.yaml-1 [openapi.yaml-2 ...]`
 where
-* -h / --help: shows command help
-* -O / --overwrite: overwrites all existing files without asking
-* -q / --quiet: suppresses informational messages about which files are being over-written, etc
-* -s # / --server=#: pull scheme, host, and port from the definition for server index `#` instead of from server index 0
+*  -h / --help: shows command help
+*  -O / --overwrite: overwrites all existing files without asking
+*  -q / --quiet: suppresses informational messages about which files are being over-written, etc
+*  -s # / --server=#: pull scheme, host, and port from the definition for server index `#` instead of from server index 0
 
 ### Standard Elements Used
-* `servers[0]`: used to find the scheme, hostname, port, and path prefix, if any.
-* `paths.path`: used to create the `testname` member, the filename, the test description, and the URL `path` member for the http/https `options` object.
-* `paths.path.method`: used to create the `testname` member, the filename, and the `method` member of the http/https `options` object.
-* `paths.path.method.requestBody.content.application/json.examples`: used for the payload and as a suffix for the filename for POST and PUT requests.
-* `paths.method.responses.response`: used for the expected returned status from the server
+*  `servers[0]`: used to find the scheme, hostname, port, and path prefix, if any.
+*  `paths.path`: used to create the `testname` member, the filename, the test description, and the URL `path` member for the http/https `options` object.
+*  `paths.path.method`: used to create the `testname` member, the filename, and the `method` member of the http/https `options` object.
+*  `paths.path.method.requestBody.content.application/json.examples`: used for the payload and as a suffix for the filename for POST and PUT requests.
+*  `paths.method.responses.response`: used for the expected returned status from the server
 
 ### Vendor Extensions
 The OpenAPI specification does not include quite enough information to make tests useful. The vendor extension element `x-srt` allows srt-generator to create tests which are more than just stubs that need to be filled in.
@@ -123,19 +123,19 @@ This array van be used to add header data to the options object passed to the ht
 ## Example OpenAPI Specification
 An example OpenAPI specification that includes the vendor extensions described above can be found in the [examples/openapi](https://github.com/Jmcleodfoss/srt-generator/blob/master/examples/openapil) directory:
 along with output JSON files srt-generator generates:
-* openapi.yaml
-* DELETE_point_204.json
-* DELETE_point_401.json
-* DELETE_point_404.json
-* GET_ping_204.json
-* GET_point_200.json
-* GET_point_404.json
-* POST_point_200_pointOrigin.json
-* POST_point_400.json
-* PUT_point_204_point90Degrees.json
-* PUT_point_400.json
-* PUT_point_401.json
-* PUT_point_404.json
+*  openapi.yaml
+*  DELETE_point_204.json
+*  DELETE_point_401.json
+*  DELETE_point_404.json
+*  GET_ping_204.json
+*  GET_point_200.json
+*  GET_point_404.json
+*  POST_point_200_pointOrigin.json
+*  POST_point_400.json
+*  PUT_point_204_point90Degrees.json
+*  PUT_point_400.json
+*  PUT_point_401.json
+*  PUT_point_404.json
 **Note** that generating a server using *openapi-generator* and running it, and the running mocha against these tests, will *not* result in the expected behavior for the \*40x.json files as there is no
 code backing the point service to return error values.
 
@@ -151,8 +151,8 @@ or PUT request. Macros may appear in any string value in the test object, althou
 
 ### Saving Responses
 To save the response from a test, the following elements need to be defined in the test object:
-* `saveResponse: true`
-* `testname: /* A unique name for the test, e.g. POST_tag_200 */`
+*  `saveResponse: true`
+*  `testname: /* A unique name for the test, e.g. POST_tag_200 */`
 The test must return an object like `{"addedItemIndex":"193"}`.
 
 ### Referring to Saved Data
@@ -221,8 +221,8 @@ For troubleshooting, it is often convenient to see how macros are expanded. This
 srt-expand-macros[-h | [-D macro-1=value-1 [-D macro-2=value2 [...]]] test-definition [test-definition [...]]]
 ```
 where
-* -h / --help              Display this usage guide
-* -D / --define string[]   Define macro as macro=substitution (this can appear multiple times)
+*  -h / --help              Display this usage guide
+*  -D / --define string[]   Define macro as macro=substitution (this can appear multiple times)
 
 Macros can be either response-style macros (${a}.b=value} or simple substitutions (${a}=value).
 
