@@ -216,7 +216,7 @@ grabbed by node when the program was executed.
 
 Invoke *mocha* in the directory containing the above script to run the tests.
 
-## Viewing Macro Substitutions: srt-expand-macros.
+## Viewing Macro Substitutions: srt-expand-macros
 For troubleshooting, it is often convenient to see how macros are expanded. This can be done using the *srt-expand-macros* application.
 
 ### Running srt-generator
