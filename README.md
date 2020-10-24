@@ -153,8 +153,9 @@ or PUT request. Macros may appear in any string value in the test object, althou
 
 ### Saving Responses
 To save the response from a test, the following elements need to be defined in the test object:
-*  `saveResponse: true`
-*  `testname: /* A unique name for the test, e.g. POST_tag_200 */`
+*   `saveResponse: true`
+*   `testname: /* A unique name for the test, e.g. POST_tag_200 */`
+
 The test must return an object like `{"addedItemIndex":"193"}`.
 
 ### Referring to Saved Data
@@ -223,8 +224,8 @@ For troubleshooting, it is often convenient to see how macros are expanded. This
 srt-expand-macros[-h | [-D macro-1=value-1 [-D macro-2=value2 [...]]] test-definition [test-definition [...]]]
 ```
 where
-*  -h / --help              Display this usage guide
-*  -D / --define string[]   Define macro as macro=substitution (this can appear multiple times)
+*   -h / --help              Display this usage guide
+*   -D / --define string[]   Define macro as macro=substitution (this can appear multiple times)
 
 Macros can be either response-style macros (${a}.b=value} or simple substitutions (${a}=value).
 
