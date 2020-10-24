@@ -47,7 +47,7 @@ The test information is stored in a JSON file with the following members:
 }
 ```
 *  The value of `description` is passed to the Mocha`describe` function.
-*  The value `expectation` is passed to the Mocha`i` function.
+*  The value of `expectation` is passed to the Mocha`i` function.
 *  The value of `status` is compared to the status code of the service's response to the request in a Chai.js`expec` test.
 *  The value of `responseRequest` is compared to the string returned by the service to the rest request in a Chai.js`expec` test.
 *  The value of `saveResponse` indicates whether the response from the server to this request should be saved for use in a future test. See "macros" below for more information.
