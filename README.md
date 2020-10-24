@@ -24,7 +24,7 @@ npm install simple-rest-tester
 
 ## JSON structure
 The test information is stored in a JSON file with the following members:
-```json
+```javascript
 {
 	"description": /* Description of the test to be displayed by Mocha */
 	"expectation": /* Description of the results of a successful test to be displayed by Mocha */
