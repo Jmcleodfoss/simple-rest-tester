@@ -219,7 +219,7 @@ Invoke *mocha* in the directory containing the above script to run the tests.
 ## Viewing Macro Substitutions: srt-expand-macros
 For troubleshooting, it is often convenient to see how macros are expanded. This can be done using the *srt-expand-macros* application.
 
-### Running srt-generator
+### Running srt-expand-macros
 ```bash
 srt-expand-macros[-h | [-D macro-1=value-1 [-D macro-2=value2 [...]]] test-definition [test-definition [...]]]
 ```
