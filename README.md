@@ -14,17 +14,17 @@ specific order different from that used by the provided application).
 ## Installation
 ### For Command-Line Use
 To use the three applications from the command line, install using npm with the -g / --global flag:
-```
+```bash
 npm install -g simple-rest-tester
 ```
 ### To Use the simple-rest-tester Engine Directly
-```
+```bash
 npm install simple-rest-tester
 ```
 
 ## JSON structure
 The test information is stored in a JSON file with the following members:
-```
+```json
 {
 	"description": /* Description of the test to be displayed by Mocha */
 	"expectation": /* Description of the results of a successful test to be displayed by Mocha */
@@ -160,11 +160,11 @@ To refer to saved information in a later test, use a macro with the format `${sa
 All occurrences of this macro will be replaced with the value returned by the named test.
 
 Here is an example of path containing a macro (in the `options` member of the test specification):
-```
+```json
 "path": "/v1/item/${POST_item_200}.addedItemIndex?queryParameter=1
 ```
 After macro replacement, this will become (using our example `addedItemIndex` from above):
-```
+```json
 "path": "/v1/item/193?queryParameter=1
 ```
 Similar substitutions can take place in the payload object.
@@ -183,7 +183,7 @@ application and when running the simple-rest-tester engine from your own applica
 
 ## Rolling Your Own
 Create a test suite using a file like [examples/test.js](https://github.com/Jmcleodfoss/simple-rest-tester/blob/master/examples/test.js):
-```
+```javascript
 "use strict";
 
 const srt = require('simple-rest-tester');
@@ -217,7 +217,9 @@ Invoke *mocha* in the directory containing the above script to run the tests.
 For troubleshooting, it is often convenient to see how macros are expanded. This can be done using the *srt-expand-macros* application.
 
 ### Running srt-generator
-`srt-expand-macros[-h | [-D macro-1=value-1 [-D macro-2=value2 [...]]] test-definition [test-definition [...]]]`
+```bash
+srt-expand-macros[-h | [-D macro-1=value-1 [-D macro-2=value2 [...]]] test-definition [test-definition [...]]]
+```
 where
 * -h / --help              Display this usage guide
 * -D / --define string[]   Define macro as macro=substitution (this can appear multiple times)
