@@ -46,14 +46,14 @@ The test information is stored in a JSON file with the following members:
 	}
 }
 ```
-* The value of `description` is passed to the Mocha`describe` function.
-* The value `expectation` is passed to the Mocha`i` function.
-* The value of `status` is compared to the status code of the service's response to the request in a Chai.js`expec` test.
-* The value of `responseRequest` is compared to the string returned by the service to the rest request in a Chai.js`expec` test.
-* The value of `saveResponse` indicates whether the response from the server to this request should be saved for use in a future test. See "macros" below for more information.
-* The value of `testname` is used in macros to refer to returned results in later tests. See "macros" below for more information. It is only necessary if saveResponse is true. By convention, it has the format METHOD_service_response, e.g. POST_myservice_200.
-* The value of `scheme` is used with a`require` command to create an http or https object.
-* The value of `payload` is written into the POST or PUT request.
+*  The value of `description` is passed to the Mocha`describe` function.
+*  The value `expectation` is passed to the Mocha`i` function.
+*  The value of `status` is compared to the status code of the service's response to the request in a Chai.js`expec` test.
+*  The value of `responseRequest` is compared to the string returned by the service to the rest request in a Chai.js`expec` test.
+*  The value of `saveResponse` indicates whether the response from the server to this request should be saved for use in a future test. See "macros" below for more information.
+*  The value of `testname` is used in macros to refer to returned results in later tests. See "macros" below for more information. It is only necessary if saveResponse is true. By convention, it has the format METHOD_service_response, e.g. POST_myservice_200.
+*  The value of `scheme` is used with a`require` command to create an http or https object.
+*  The value of `payload` is written into the POST or PUT request.
 * The `options` object is the passed into the [http.request](https://nodejs.org/api/http.html#http_http_request_options_callback) or
 [https.request](https://nodejs.org/api/https.html#https_https_request_options_callback) function.
 
