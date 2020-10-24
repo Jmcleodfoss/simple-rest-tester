@@ -2,12 +2,14 @@
 # simple-rest-tester
 A simplistic test harness for REST APIs which uses [node.js](http://nodejs.org), [Mocha](http://mochajs.node), and [Chai.js](www.chaijs.com), and JSON files defining test parameters 
 and expected results to run simple REST API tests with the following characteristics:
-*  a deterministic return value
-*  a response code
+*   a deterministic return value
+*   a response code
+
 The *simple-rest-tester* package includes three applications:
-*  simple-rest-tester, which runs tests on all JSON files in the current directory, handling dependencies (for tests which use the results of other tests)
-*  srt-generator, which creates test JSON files from an [OpenAPI 3](https://swagger.io/specification/) specification with a small number of vendor extensions described below
-*  srt-expand-macros, which allows you to show what a test file looks like after macro replacement for macros defined at the command line and using environment variables
+*   simple-rest-tester, which runs tests on all JSON files in the current directory, handling dependencies (for tests which use the results of other tests)
+*   srt-generator, which creates test JSON files from an [OpenAPI 3](https://swagger.io/specification/) specification with a small number of vendor extensions described below
+*   srt-expand-macros, which allows you to show what a test file looks like after macro replacement for macros defined at the command line and using environment variables
+
 There is also an API for use if your testing needs are more complicated than what can be handled by the *simple-rest-tester* application (for example, you need to run tests in a 
 specific order different from that used by the provided application).
 
