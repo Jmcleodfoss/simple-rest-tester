@@ -48,16 +48,15 @@ The test information is stored in a JSON file with the following members:
 	}
 }
 ```
-*  The value of `description` is passed to the Mocha`describe` function.
-*  The value of `expectation` is passed to the Mocha`i` function.
-*  The value of `status` is compared to the status code of the service's response to the request in a Chai.js`expec` test.
-*  The value of `responseRequest` is compared to the string returned by the service to the rest request in a Chai.js`expec` test.
-*  The value of `saveResponse` indicates whether the response from the server to this request should be saved for use in a future test. See "macros" below for more information.
-*  The value of `testname` is used in macros to refer to returned results in later tests. See "macros" below for more information. It is only necessary if saveResponse is true. By convention, it has the format METHOD_service_response, e.g. POST_myservice_200.
-*  The value of `scheme` is used with a`require` command to create an http or https object.
-*  The value of `payload` is written into the POST or PUT request.
-*  The `options` object is the passed into the [http.request](https://nodejs.org/api/http.html#http_http_request_options_callback) or
-[https.request](https://nodejs.org/api/https.html#https_https_request_options_callback) function.
+*   The value of `description` is passed to the Mocha`describe` function.
+*   The value of `expectation` is passed to the Mocha`i` function.
+*   The value of `status` is compared to the status code of the service's response to the request in a Chai.js`expec` test.
+*   The value of `responseRequest` is compared to the string returned by the service to the rest request in a Chai.js`expec` test.
+*   The value of `saveResponse` indicates whether the response from the server to this request should be saved for use in a future test. See "macros" below for more information.
+*   The value of `testname` is used in macros to refer to returned results in later tests. See "macros" below for more information. It is only necessary if saveResponse is true. By convention, it has the format METHOD_service_response, e.g. POST_myservice_200.
+*   The value of `scheme` is used with a`require` command to create an http or https object.
+*   The value of `payload` is written into the POST or PUT request.
+*   The `options` object is the passed into the [http.request](https://nodejs.org/api/http.html#http_http_request_options_callback) or [https.request](https://nodejs.org/api/https.html#https_https_request_options_callback) function.
 
 ## Test File Names
 By convention, the base file name is the same as the testname member, with the extension "json": METHOD_service_response.json, 
@@ -67,17 +66,17 @@ e.g. POST_myservice_200.json, but you may pick whatever convention you like.
 ### Running srt-generator
 `srt-generator [--help|-h] | [--overwrite|-O] [--quiet|-q] [--server=#|-s #] openapi.yaml-1 [openapi.yaml-2 ...]`
 where
-*  -h / --help: shows command help
-*  -O / --overwrite: overwrites all existing files without asking
-*  -q / --quiet: suppresses informational messages about which files are being over-written, etc
-*  -s # / --server=#: pull scheme, host, and port from the definition for server index `#` instead of from server index 0
+*   -h / --help: shows command help
+*   -O / --overwrite: overwrites all existing files without asking
+*   -q / --quiet: suppresses informational messages about which files are being over-written, etc
+*   -s # / --server=#: pull scheme, host, and port from the definition for server index `#` instead of from server index 0
 
 ### Standard Elements Used
-*  `servers[0]`: used to find the scheme, hostname, port, and path prefix, if any.
-*  `paths.path`: used to create the `testname` member, the filename, the test description, and the URL `path` member for the http/https `options` object.
-*  `paths.path.method`: used to create the `testname` member, the filename, and the `method` member of the http/https `options` object.
-*  `paths.path.method.requestBody.content.application/json.examples`: used for the payload and as a suffix for the filename for POST and PUT requests.
-*  `paths.method.responses.response`: used for the expected returned status from the server
+*   `servers[0]`: used to find the scheme, hostname, port, and path prefix, if any.
+*   `paths.path`: used to create the `testname` member, the filename, the test description, and the URL `path` member for the http/https `options` object.
+*   `paths.path.method`: used to create the `testname` member, the filename, and the `method` member of the http/https `options` object.
+*   `paths.path.method.requestBody.content.application/json.examples`: used for the payload and as a suffix for the filename for POST and PUT requests.
+*   `paths.method.responses.response`: used for the expected returned status from the server
 
 ### Vendor Extensions
 The OpenAPI specification does not include quite enough information to make tests useful. The vendor extension element `x-srt` allows srt-generator to create tests which are more than just stubs that need to be filled in.
@@ -125,19 +124,20 @@ This array van be used to add header data to the options object passed to the ht
 ## Example OpenAPI Specification
 An example OpenAPI specification that includes the vendor extensions described above can be found in the [examples/openapi](https://github.com/Jmcleodfoss/srt-generator/blob/master/examples/openapil) directory:
 along with output JSON files srt-generator generates:
-*  openapi.yaml
-*  DELETE_point_204.json
-*  DELETE_point_401.json
-*  DELETE_point_404.json
-*  GET_ping_204.json
-*  GET_point_200.json
-*  GET_point_404.json
-*  POST_point_200_pointOrigin.json
-*  POST_point_400.json
-*  PUT_point_204_point90Degrees.json
-*  PUT_point_400.json
-*  PUT_point_401.json
-*  PUT_point_404.json
+*   openapi.yaml
+*   DELETE_point_204.json
+*   DELETE_point_401.json
+*   DELETE_point_404.json
+*   GET_ping_204.json
+*   GET_point_200.json
+*   GET_point_404.json
+*   POST_point_200_pointOrigin.json
+*   POST_point_400.json
+*   PUT_point_204_point90Degrees.json
+*   PUT_point_400.json
+*   PUT_point_401.json
+*   PUT_point_404.json
+
 **Note** that generating a server using *openapi-generator* and running it, and the running mocha against these tests, will *not* result in the expected behavior for the \*40x.json files as there is no
 code backing the point service to return error values.
 
