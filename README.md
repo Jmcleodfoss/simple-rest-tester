@@ -1,5 +1,8 @@
 ![MIT License](https://img.shields.io/badge/license-MIT-green) ![Xanitizer Security Analysis](https://github.com/Jmcleodfoss/simple-rest-tester/workflows/Xanitizer%20Security%20Analysis/badge.svg) ![SL Scan](https://github.com/Jmcleodfoss/simple-rest-tester/workflows/SL%20Scan/badge.svg) ![Codacy Security Scan](https://github.com/Jmcleodfoss/simple-rest-tester/workflows/Codacy%20Security%20Scan/badge.svg) ![CodeQL](https://github.com/Jmcleodfoss/simple-rest-tester/workflows/CodeQL/badge.svg)
 # simple-rest-tester
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/02c9182fb9204a709cbf472a895b87eb)](https://app.codacy.com/gh/Jmcleodfoss/simple-rest-tester?utm_source=github.com&utm_medium=referral&utm_content=Jmcleodfoss/simple-rest-tester&utm_campaign=Badge_Grade_Settings)
+
 A simplistic test harness for REST APIs which uses [node.js](http://nodejs.org), [Mocha](http://mochajs.node), and [Chai.js](www.chaijs.com), and JSON files defining test parameters 
 and expected results to run simple REST API tests with the following characteristics:
 *   a deterministic return value
