@@ -1,5 +1,9 @@
-![MIT License](https://img.shields.io/badge/license-MIT-green) ![Xanitizer Security Analysis](https://github.com/Jmcleodfoss/simple-rest-tester/workflows/Xanitizer%20Security%20Analysis/badge.svg) ![SL Scan](https://github.com/Jmcleodfoss/simple-rest-tester/workflows/SL%20Scan/badge.svg) ![CodeQL](https://github.com/Jmcleodfoss/simple-rest-tester/workflows/CodeQL/badge.svg)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/02c9182fb9204a709cbf472a895b87eb)](https://app.codacy.com/gh/Jmcleodfoss/simple-rest-tester?utm_source=github.com&utm_medium=referral&utm_content=Jmcleodfoss/simple-rest-tester&utm_campaign=Badge_Grade_Settings) ![Codacy Security Scan](https://github.com/Jmcleodfoss/simple-rest-tester/workflows/Codacy%20Security%20Scan/badge.svg) 
+![MIT License](https://img.shields.io/badge/license-MIT-green) 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/02c9182fb9204a709cbf472a895b87eb)](https://app.codacy.com/gh/Jmcleodfoss/simple-rest-tester?utm_source=github.com&utm_medium=referral&utm_content=Jmcleodfoss/simple-rest-tester&utm_campaign=Badge_Grade_Settings) 
+![Codacy Security Scan](https://github.com/Jmcleodfoss/simple-rest-tester/workflows/Codacy%20Security%20Scan/badge.svg) 
+![CodeQL](https://github.com/Jmcleodfoss/simple-rest-tester/workflows/CodeQL/badge.svg)
+![SL Scan](https://github.com/Jmcleodfoss/simple-rest-tester/workflows/SL%20Scan/badge.svg) 
+![Xanitizer Security Analysis](https://github.com/Jmcleodfoss/simple-rest-tester/workflows/Xanitizer%20Security%20Analysis/badge.svg) 
 # simple-rest-tester
 
 
