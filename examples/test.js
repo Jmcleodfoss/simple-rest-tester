@@ -4,12 +4,8 @@ const mocha_test = require('simple-rest-tester').mocha;
 
 function test(jsonFile)
 {
-	try {
-		const reqDescr = require(jsonFile);
-		mocha_test(reqDescr);
-	} catch (ex) {
-		console.log(ex);
-	}
+	const reqDescr = require(jsonFile);
+	mocha_test(reqDescr);
 }
 
 // Order of tests is important if you are using macros ore relying on the existence of resources created by earlier tests in later tests

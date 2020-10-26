@@ -52,11 +52,7 @@ if (options.hasOwnProperty('define')) {
 }
 
 for (const jsonFile of options._unknown) {
-	try {
-		const file = fs.readFileSync(jsonFile);
-		const reqDescr = JSON.parse(file);
-		console.log(srt.applyMacros(reqDescr));
-	} catch (ex) {
-		console.log(ex);
-	}
+	const file = fs.readFileSync(jsonFile);
+	const reqDescr = JSON.parse(file);
+	console.log(srt.applyMacros(reqDescr));
 }
