@@ -6,7 +6,6 @@
 ![Xanitizer Security Analysis](https://github.com/Jmcleodfoss/simple-rest-tester/workflows/Xanitizer%20Security%20Analysis/badge.svg) 
 # simple-rest-tester
 
-
 A simplistic test harness for REST APIs which uses [node.js](http://nodejs.org), [Mocha](http://mochajs.node), and [Chai.js](www.chaijs.com), and JSON files defining test parameters 
 and expected results to run simple REST API tests with the following characteristics:
 *   a deterministic return value
