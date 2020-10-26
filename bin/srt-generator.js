@@ -43,6 +43,7 @@ var fOverwriteAll = options.overwrite || false;
 
 async function getFinalFilename(filename)
 {
+	const sleepPromise = (resolve) => { setTimeout(resolve, 500); }
 	var finalFilename;
 	const getOldFileDisposition = (filename, rl) => {
 		rl.question(filename + ' already exists. overwrite / Overwrite all / rename / skip / quit? (oOrsq => o) > ', answer => {
@@ -83,7 +84,7 @@ async function getFinalFilename(filename)
 
 	getOldFileDisposition(filename, rl);
 	while (finalFilename === undefined)
-		await new Promise(resolve => setTimeout(resolve, 500));
+		await new Promise(sleepPromise);
 	return finalFilename;
 }
 

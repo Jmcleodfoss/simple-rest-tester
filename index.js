@@ -66,6 +66,7 @@ function substituteMacros(str)
 exports.mocha = (reqDescr) =>
 {
 	const scheme = schemes[reqDescr.scheme];
+	const sleepPromise = (resolve) => { setTimeout(resolve, 500); }
 
 	describe(reqDescr.description, function(){
 		this.timeout(reqDescr.timeout || 2000);
@@ -104,7 +105,7 @@ exports.mocha = (reqDescr) =>
 			req.end();
 
 			while (statusCode === undefined)
-				await new Promise(resolve => setTimeout(resolve, 500));
+				await new Promise(sleepPromise);
 
 			if (debug)
 				console.log(`status: ${statusCode}\nresponse: '${responseStr}'`);
