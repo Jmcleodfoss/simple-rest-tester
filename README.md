@@ -237,6 +237,9 @@ Macros can be either response-style macros (${a}.b=value} or simple substitution
 
 ## Releases
 ### 1.0.1
+Fix issue #2, crash if an OpenAPI spec file contains a header.options section.
+Resolve several problems found by Codacy and Xanitizer.
+### 1.0.1
 Fix typo in homepage URL in package.json.
 Add a keyword to package.json
 #### srt-generator
