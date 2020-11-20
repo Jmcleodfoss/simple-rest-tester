@@ -188,8 +188,12 @@ function createTest(scheme, host, port, method, methodObject, pathPrefix, path, 
 	if (srtOptions != null && srtOptions.hasOwnProperty('headers')) {
 		if (!test['options'].hasOwnProperty('headers'))
 			test['options'].headers = {};
-		for (const headerOption in Object.keys(srtOptions.headers))
-			test['options'].headers.push(headerOption);
+
+		const keys = Object.keys(srtOptions.headers);
+		for (const k in keys) {
+			const headerOption = keys[k];
+			test['options'].headers[headerOption] = srtOptions.headers[headerOption];
+		}
 	}
 	return test;
 }
