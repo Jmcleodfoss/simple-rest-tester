@@ -308,11 +308,11 @@ where
 Macros can be either response-style macros (${a}.b=value} or simple substitutions (${a}=value).
 
 ## Releases
-### 1.0.2
+### 1.0.3
 Add support for general-purpose Javascript-based macros.
 Show headers if debugging is enabled.
 
-### 1.0.1
+### 1.0.2
 Fix issue #2, crash if an OpenAPI spec file contains a header.options section.
 Resolve several problems found by Codacy and Xanitizer.
 
