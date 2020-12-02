@@ -23,13 +23,23 @@ exports.addMacro = (macro, substitution) =>
 };
 
 /* Save results of query for future tests to use in a ${A}.b macro */
-function saveMacros(prefix, responseStr)
+function saveMacros(prefix, responseStr, macroDef)
 {
+	const macroPrefix = '${' + prefix + '}.'
 	const responseObject = JSON.parse(responseStr);
 	Object.keys(responseObject).forEach(function(key){
-		const index = '${' + prefix + '}.' + key;
+		const index = macroPrefix + key;
 		macros[index] = responseObject[key];
 	});
+
+	if (macroDef !== null) {
+		for (const m in macroDef) {
+			if (macroDef[m].definitionPhase != 'postResponse')
+				continue
+			const f = eval(macroDef[m].definition);
+			macros[macroPrefix + macroDef[m].name] = f(responseObject);
+		}
+	}
 }
 
 /* Perform ${A}.b, ${A}, and ${env}.b macro substitution */
@@ -76,6 +86,15 @@ exports.mocha = (reqDescr) =>
 		let responseStr = '';
 
 		beforeEach(function(){
+			if (reqDescr.hasOwnProperty('macroDef')) {
+				for (const m in reqDescr.macroDef) {
+					if (reqDescr.macroDef[m].definitionPhase != 'preRequest')
+						continue
+					const f = eval(reqDescr.macroDef[m].definition);
+					macros['${' + reqDescr.macroDef[m].name + '}'] = f(reqDescr);
+				}
+			}
+
 			reqDescr = exports.applyMacros(reqDescr);
 
 			if (debug) {
@@ -98,7 +117,7 @@ exports.mocha = (reqDescr) =>
 
 				response.on('end', function(chunk) {
 					if (reqDescr.saveResponse && response.statusCode == 200)
-						saveMacros(reqDescr.testname, responseStr);
+						saveMacros(reqDescr.testname, responseStr, reqDescr.hasOwnProperty('macroDef') ? reqDescr.macroDef : null);
 					statusCode = response.statusCode;
 				});
 			});

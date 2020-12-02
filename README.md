@@ -178,6 +178,78 @@ After macro replacement, this will become (using our example `addedItemIndex` fr
 ```
 Similar substitutions can take place in the payload object.
 
+### General-Purpose Javascript Macros
+Staring with version 1.0.2, you may define generic macros in a response's x-srt section. These come in two types, distinguished by the `definitionPhase` member. If the
+`definitionPhase` is `preRequest`, then the macro is executed before the http/https request is made, and it may modify the request. If the `definitionPhase` is `postResponse`,
+then it can use components of the response in its definition.
+
+#### preRequest Javascript Macros
+The pre-request macro mechanism may be used, for example, to add a counter to a value which the server being tested against expects to be unique. In the example below, the username
+must be unique. This is accomplished by reading a counter which is persisted in a file in the test directory (creating it if necessary), incrementing it, and returning it,
+but also adding it to the userName value in the payload (which one might want to do if the payload comes from an example in the OpenAPI definition file).
+```yaml
+paths:
+  ...
+  /user:
+    ...
+    POST:
+      ...
+      responses:
+        "200":
+          description: "Successfully added user; returns username and password"
+          x-srt:
+            expectation: "should return the username and password"
+            macroDef:
+            - name: 'userNameCounter'
+              definitionPhase: 'preRequest'
+              definition: |
+                (reqDescr) => {
+                  const fs = require('fs');
+                  const fn = 'persistent-counter.txt';
+                  let counter = fs.existsSync(fn) ? JSON.parse(fs.readFileSync(fn)) + 1 : 0;
+                  reqDescr.payload.userName = reqDescr.payload.userName + "-${userNameCounter}";
+                  fs.writeFileSync(fn, JSON.stringify(counter));
+                  return counter;
+                }
+```
+
+#### postResponse Javascript Macros
+The post-response macro mechanism may be used, for example, to save an authentication string for use in a later test.
+```yaml
+paths:
+  ...
+  /user:
+    ...
+    post:
+      ...
+      responses:
+        "200":
+          description: "Successfully added user; returns username and password"
+          x-srt:
+            expectation: "should return the username and password"
+            macroDef:
+            - name: 'authString'
+              definitionPhase: 'postResponse'
+              definition: |
+                ({consumerId, password}) => {
+                  return require(process.cwd() + "/node_modules/base-64").encode(consumerId + ":" + password);
+                }
+    ...
+
+    put:
+      ..
+      responses:
+        "204":
+          description: "Successfully updated user"
+          x-srt:
+            expectation: "should update the user with the new description"
+            path-subst: { "{userId}": "${POST_user_200_exampleUser1}.uid" }
+            options:
+              headers:
+                Authorization: "Basic ${POST_user_200}.authString"
+```
+Unfortunately, support for Javascript macros is marginal in srt-expand-macros, as actually evaluating a macro might have permanent side-effects (like incrementing a counter) which are undesireable.
+
 ## Environment Substitutions
 You may refer to environment variable values in macros of the form `${env}.ENVIRONMENT_VARIABLE_NAME}`. A very contrived example is `${emv}.PATH` will be expanded to your path.
 Note (a) that case is important, and (b), if you have a test which saves results under the prefix `${env}`, it won't be picked up.
@@ -239,9 +311,11 @@ Macros can be either response-style macros (${a}.b=value} or simple substitution
 ### 1.0.1
 Fix issue #2, crash if an OpenAPI spec file contains a header.options section.
 Resolve several problems found by Codacy and Xanitizer.
+
 ### 1.0.1
 Fix typo in homepage URL in package.json.
 Add a keyword to package.json
+
 #### srt-generator
 Don't create tests for responses without an x-srt element.
 

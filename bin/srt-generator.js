@@ -179,10 +179,17 @@ function createTest(scheme, host, port, method, methodObject, pathPrefix, path, 
 		if (!test['options'].hasOwnProperty('headers'))
 			test['options'].headers = {};
 		test['options'].headers['accept'] = 'application/json';
+
 		if (srtObject.hasOwnProperty('saveResponse'))
 			test['saveResponse'] = getSchemaSRTValue(srtObject, 'saveResponse', true);
 		else if (responseObject.hasOwnProperty('links'))
 			test['saveResponse'] = getSchemaSRTValue(srtObject, 'saveResponse', responseObject.hasOwnProperty('links'));
+
+		if (srtObject.hasOwnProperty('macroDef')) {
+			test.macroDef = [];
+			for (const m in srtObject.macroDef)
+				test.macroDef.push(srtObject.macroDef[m]);
+		}
 	}
 
 	if (srtOptions != null && srtOptions.hasOwnProperty('headers')) {

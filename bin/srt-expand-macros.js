@@ -54,5 +54,24 @@ if (options.hasOwnProperty('define')) {
 for (const jsonFile of options._unknown) {
 	const file = fs.readFileSync(jsonFile);
 	const reqDescr = JSON.parse(file);
+
+	if (reqDescr.hasOwnProperty('macroDef')) {
+		for (const m in reqDescr.macroDef) {
+			if (!reqDescr.macroDef[m].hasOwnProperty('name')) {
+				console.log('warning: macro definition ' + n + ' is missing name, skipping');
+			} else if (!reqDescr.macroDef[m].hasOwnProperty('definitionPhase')) {
+				console.log('warning: macro definition ' + reqDescr.macroDef[n].name + ' is missing definitionPhase, skipping');
+			} else if (!reqDescr.macroDef[m].hasOwnProperty('definition')) {
+				console.log('warning: macro definition ' + reqDescr.macroDef[n].name + ' is missing definition, skipping');
+			} else if (reqDescr.macroDef[m].definitionPhase == 'preRequest') {
+				srt.addMacro(reqDescr.macroDef[m].name, 'pre-request defined macro')
+			} else if (reqDescr.macroDef[m].definitionPhase == 'postResponse') {
+				srt.addMacro(reqDescr.macroDef[m].name, 'post-response defined macro');
+			} else {
+				console.log('warning: unrecognized definition phase ' + reqDescr.macroDef[m].definitionPhase + ' in macro ' + reqDescr.macroDef[m].name + ', ignoring');
+			}
+		}
+	}
+
 	console.log(srt.applyMacros(reqDescr));
 }
