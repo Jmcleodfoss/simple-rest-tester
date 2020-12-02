@@ -78,8 +78,16 @@ exports.mocha = (reqDescr) =>
 		beforeEach(function(){
 			reqDescr = exports.applyMacros(reqDescr);
 
-			if (debug)
+			if (debug) {
 				console.log('path: ' + reqDescr.options.path);
+
+				if (reqDescr.options.hasOwnProperty('headers')) {
+				console.log('Headers');
+					Object.keys(reqDescr.options.headers).forEach(function(key) {
+						console.log('\t' + key + ': ' + reqDescr.options.headers[key]);
+					})
+				}
+			}
 
 			req = scheme.request(reqDescr.options, function(response) {
 				responseStr = '';
