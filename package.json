@@ -1,6 +1,6 @@
 {
 	"name": "simple-rest-tester",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"description": "Simple JSON-driven test framework for REST APIs",
 	"keywords": "mocha,tdd,openapi",
 	"homepage": "https://github.com/Jmcleodfoss/simple-rest-tester",
