@@ -170,11 +170,11 @@ All occurrences of this macro will be replaced with the value returned by the na
 
 Here is an example of path containing a macro (in the `options` member of the test specification):
 ```json
-"path": "/v1/item/${POST_item_200}.addedItemIndex?queryParameter=1
+"path": "/v1/item/${POST_item_200}.addedItemIndex?queryParameter=1"
 ```
 After macro replacement, this will become (using our example `addedItemIndex` from above):
 ```json
-"path": "/v1/item/193?queryParameter=1
+"path": "/v1/item/193?queryParameter=1"
 ```
 Similar substitutions can take place in the payload object.
 
