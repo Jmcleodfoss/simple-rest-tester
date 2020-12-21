@@ -138,7 +138,7 @@ function getPath(pathPrefix, path, srtObject)
 
 function getTestName(method, path, response)
 {
-	return method + '_' + path.split('/')[1] + '_' + response;
+	return method + '_' + path.split('/').slice(1).join('-') + '_' + response;
 }
 
 function getSchemaSRTValue(object, key, defaultValue)
