@@ -308,6 +308,10 @@ where
 Macros can be either response-style macros (${a}.b=value} or simple substitutions (${a}=value).
 
 ## Releases
+### 1.0.4
+Use full path to construct test filename rather than just the first component, so e.g. GET /user/{id}/name creates a file named user_id_name.json rather than user.json.
+Log scheme, host, and port if debugging is enabled.
+
 ### 1.0.3
 Add support for general-purpose Javascript-based macros.
 Show headers if debugging is enabled.
