@@ -98,6 +98,9 @@ exports.mocha = (reqDescr) =>
 			reqDescr = exports.applyMacros(reqDescr);
 
 			if (debug) {
+				console.log('scheme: ' + reqDescr.scheme);
+				console.log('host: ' + reqDescr.options.host);
+				console.log('port: ' + reqDescr.options.port);
 				console.log('path: ' + reqDescr.options.path);
 
 				if (reqDescr.options.hasOwnProperty('headers')) {
