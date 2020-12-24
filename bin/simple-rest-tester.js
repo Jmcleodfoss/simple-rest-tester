@@ -32,6 +32,13 @@ async function getPrerequisiteTests(testObj)
 		}
 	}
 
+	if (testObj.hasOwnProperty('prerequisites')) {
+		for (const p of testObj.prerequisites) {
+			if (!prerequisites.includes(p))
+				prerequisites.push(p);
+		}
+	}
+
 	return prerequisites;
 }
 

@@ -52,6 +52,8 @@ The test information is stored in a JSON file with the following members:
 		"headers": /* An object providing any HTTP headers, e.g. "accept": "application/json" or "Content-Type": "application/json" */
 		}
 	}
+
+	"prerequisites": [] /* An array of testnames for tests that have to be perfomed before this test, for cases where there are dependencies that are not in the form of returned values */
 }
 ```
 *   The value of `description` is passed to the Mocha`describe` function.
@@ -63,6 +65,7 @@ The test information is stored in a JSON file with the following members:
 *   The value of `scheme` is used with a`require` command to create an http or https object.
 *   The value of `payload` is written into the POST or PUT request.
 *   The `options` object is the passed into the [http.request](https://nodejs.org/api/http.html#http_http_request_options_callback) or [https.request](https://nodejs.org/api/https.html#https_https_request_options_callback) function.
+*   The `prerequisites` array is added to the list of prerequisites calculated based on macro definitions to force tests to be performed in a specific order.
 
 ## Test File Names
 By convention, the base file name is the same as the testname member, with the extension "json": METHOD_service_response.json, 
@@ -126,6 +129,9 @@ This may be used to over-ride the port used for testing which is obtained from t
 
 ### paths.path.method.responses.response.xsrt.options.headers
 This array van be used to add header data to the options object passed to the http/https request function. The values provided here over-ride any default values for `Content-Type` or `accept`.
+
+### paths.path.method.responses.response.xsrt.prerequisites
+This array lists testnames for tests that must be performed before the current test.
 
 ## Example OpenAPI Specification
 An example OpenAPI specification that includes the vendor extensions described above can be found in the [examples/openapi](https://github.com/Jmcleodfoss/srt-generator/blob/master/examples/openapil) directory:
