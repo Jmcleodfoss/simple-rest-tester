@@ -124,13 +124,13 @@ This may be used to over-ride the scheme use for testing (http or https) which i
 #### paths.path.method.responses.response.x-srt.options.host
 This may be used to over-ride the host used for testing which is obtained from the first defined server.
 
-### paths.path.method.responses.response.x-srt.options.port
+#### paths.path.method.responses.response.x-srt.options.port
 This may be used to over-ride the port used for testing which is obtained from the first defined server.
 
-### paths.path.method.responses.response.x-srt.options.headers
+#### paths.path.method.responses.response.x-srt.options.headers
 This array can be used to add header data to the options object passed to the http/https request function. The values provided here over-ride any default values for `Content-Type` or `accept`.
 
-### paths.path.method.responses.response.x-srt.prerequisites
+#### paths.path.method.responses.response.x-srt.prerequisites
 This array lists testnames for tests that must be performed before the current test.
 
 ## Example OpenAPI Specification
