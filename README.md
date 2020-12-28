@@ -37,6 +37,7 @@ The test information is stored in a JSON file with the following members:
 	"description": /* Description of the test to be displayed by Mocha */
 	"expectation": /* Description of the results of a successful test to be displayed by Mocha */
 	"status": /* Expected numeric HTTP status code, used by a Mocha expect test" */
+	"path-suffix": /* A string to be appended to the path (typically a query string) */ 
 	"responseRegexp": /* A regular expression describing the expected response, used by a Mocha expect test (e.g. 200, 204, 400, 401, 404, etc) */
 	"saveResponse": /* A flag indicating whether the result of this test should be saved for later use by another test in the test suite (true or false) */
 	"testname": /* Unique (within test suite) identifier */
