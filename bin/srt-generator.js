@@ -175,6 +175,10 @@ function createTest(scheme, host, port, method, methodObject, pathPrefix, path, 
 		test['options'].headers = { 'Content-Type': contentType };
 	}
 
+	if (srtObject != null && srtObject.hasOwnProperty('prerequisites')) {
+		test['prerequisites'] = srtObject['prerequisites'];
+	}
+
 	if (response == 200) {
 		if (!test['options'].hasOwnProperty('headers'))
 			test['options'].headers = {};
