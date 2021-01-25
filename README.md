@@ -315,6 +315,9 @@ where
 Macros can be either response-style macros (${a}.b=value} or simple substitutions (${a}=value).
 
 ## Releases
+### 1.0.5
+It is now possible to define prerequisite tests to force a test to take place after another test even if it does not have a dependency on the other test's return value.
+
 ### 1.0.4
 Use full path to construct test filename rather than just the first component, so e.g. GET /user/{id}/name creates a file named user_id_name.json rather than user.json.
 Log scheme, host, and port if debugging is enabled.
