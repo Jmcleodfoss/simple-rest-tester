@@ -6,6 +6,7 @@ const readline = require('readline');
 const SwaggerParser = require('@apidevtools/swagger-parser');
 const CommandLineArgs = require('command-line-args');
 const CommandLineUsage = require('command-line-usage');
+const merge = require('deepmerge');
 
 const urlRegexp = /(https?):\/\/([^:\/]*)(:([1-9][0-9]*))?(\/.*$)?/;
 const contentType = 'application/json';
@@ -173,6 +174,12 @@ function createTest(scheme, host, port, method, methodObject, pathPrefix, path, 
 	} else if (exampleObject != null) {
 		test['payload'] = exampleObject.value;
 		test['options'].headers = { 'Content-Type': contentType };
+	}
+
+	if (srtObject != null && srtObject.hasOwnProperty('payload-override')) {
+		for (const [key, value] of Object.entries(srtObject['payload-override'])) {
+			eval(`test['payload'].value.${key} = "${value}"`);
+		}
 	}
 
 	if (srtObject != null && srtObject.hasOwnProperty('prerequisites')) {

@@ -44,6 +44,7 @@ The test information is stored in a JSON file with the following members:
 	"scheme": /* the URL scheme to use for this test (http or https) */
 
 	"payload": /* An object giving the contents of the body of a POST or PUT request, if any */
+	"payload-override": /* An object that replaces some items of the payload (normally used if payload is set to an example value but a small number of members need to be changed"
 
 	"options": {
 		"host": /* The name or IP address of the host holding the REST API server to be tested */
@@ -115,6 +116,9 @@ between responses which have not been considered and those which have been expli
 
 #### paths.path.method.responses.response.x-srt.payload
 This extension should be used to provide a payload for tests which do not use the paths.path.method.requestBody.content.application/json/examples element to provide the body of a request.
+
+#### paths.path.method.responses.response.x-srt.payload-override
+This extension should be used with the x-srt.payload extension to override some members of the main payload extension. The use case for this is setting the payload to a reference to an example in the component section, and then changing a member to generate a slightly different test (e.g. changing a member to an invalid value to test code paths in the API service dealing with bad input).
 
 #### paths.path.method.responses.response.x-srt.path-subst
 This extension. if present, should be a set of key-value pairs where the key represents a part of the path to be replaced, and the value is the substituted value.
