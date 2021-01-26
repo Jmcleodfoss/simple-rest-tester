@@ -177,7 +177,7 @@ function createTest(scheme, host, port, method, methodObject, pathPrefix, path, 
 
 	if (srtObject != null && srtObject.hasOwnProperty('payload-override')) {
 		for (const [key, value] of Object.entries(srtObject['payload-override'])) {
-			eval(`test['payload'].value.${key} = "${value}"`);
+			eval(`test['payload'].${key} = "${value}"`);
 		}
 	}
 
