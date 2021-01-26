@@ -6,7 +6,6 @@ const readline = require('readline');
 const SwaggerParser = require('@apidevtools/swagger-parser');
 const CommandLineArgs = require('command-line-args');
 const CommandLineUsage = require('command-line-usage');
-const merge = require('deepmerge');
 
 const urlRegexp = /(https?):\/\/([^:\/]*)(:([1-9][0-9]*))?(\/.*$)?/;
 const contentType = 'application/json';
