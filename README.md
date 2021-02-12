@@ -319,27 +319,27 @@ where
 Macros can be either response-style macros (${a}.b=value} or simple substitutions (${a}=value).
 
 ## Releases
-### 1.0.5
+### 1.0.5 2021-01-25
 It is now possible to define prerequisite tests to force a test to take place after another test even if it does not have a dependency on the other test's return value.
 
-### 1.0.4
+### 1.0.4 2020-12-23
 Use full path to construct test filename rather than just the first component, so e.g. GET /user/{id}/name creates a file named user_id_name.json rather than user.json.
 Log scheme, host, and port if debugging is enabled.
 
-### 1.0.3
+### 1.0.3 2020-12-02
 Add support for general-purpose Javascript-based macros.
 Show headers if debugging is enabled.
 
-### 1.0.2
+### 1.0.2 2020-11-20
 Fix issue #2, crash if an OpenAPI spec file contains a header.options section.
 Resolve several problems found by Codacy and Xanitizer.
 
-### 1.0.1
+### 1.0.1 2020-10-11
 Fix typo in homepage URL in package.json.
 Add a keyword to package.json
 
 #### srt-generator
 Don't create tests for responses without an x-srt element.
 
-### 1.0.0
+### 1.0.0, 2020-10-07
 Initial release. Functionality to be improved as demand requires and time permits.
