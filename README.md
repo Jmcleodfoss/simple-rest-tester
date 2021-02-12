@@ -319,6 +319,9 @@ where
 Macros can be either response-style macros (${a}.b=value} or simple substitutions (${a}=value).
 
 ## Releases
+### 1.0.6 2020-02-12
+Add new element to allow payload to be over-ridden. (This allows a single example to be used for multiple tests by modifying various of its properties at test time.)
+
 ### 1.0.5 2021-01-25
 It is now possible to define prerequisite tests to force a test to take place after another test even if it does not have a dependency on the other test's return value.
 
