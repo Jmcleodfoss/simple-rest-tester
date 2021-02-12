@@ -319,7 +319,7 @@ where
 Macros can be either response-style macros (${a}.b=value} or simple substitutions (${a}=value).
 
 ## Releases
-### 1.0.6 2020-02-12
+### 1.0.6 2021-02-12
 Add new element to allow payload to be over-ridden. (This allows a single example to be used for multiple tests by modifying various of its properties at test time.)
 
 ### 1.0.5 2021-01-25
