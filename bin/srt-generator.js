@@ -12,6 +12,7 @@ const urlRegexp = /(https?):\/\/([^:\/]*)(:([1-9][0-9]*))?(\/.*$)?/;
 const contentType = 'application/json';
 
 const SRTDataKey = 'x-srt';
+const FILENAME_KEY = 'filename';
 
 const optionDefinitions = [
 	{ name: 'overwrite', alias: 'O', type: Boolean, description: 'Overwrite any existing files without asking' },
@@ -156,7 +157,7 @@ function createTest(scheme, host, port, method, methodObject, pathPrefix, path, 
 	const srtOptions = srtObject != null && srtObject.hasOwnProperty('options') ? srtObject['options'] : null;
 
 	let test = {
-		testname: getTestName(method, path, response) + (appendExampleToName ? '_' + example : ''),
+		testname: srtObject.hasOwnProperty(FILENAME_KEY) ? srtObject[FILENAME_KEY] : getTestName(method, path, response) + (appendExampleToName ? '_' + example : ''),
 		description : getSchemaSRTValue(srtObject, 'description', method + ' ' + pathPrefix + path),
 		expectation : getSchemaSRTValue(srtObject, 'expectation', 'tbd'),
 		status : response,

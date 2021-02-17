@@ -72,6 +72,7 @@ The test information is stored in a JSON file with the following members:
 ## Test File Names
 By convention, the base file name is the same as the testname member, with the extension "json": METHOD_service_response.json, 
 e.g. POST_myservice_200.json, but you may pick whatever convention you like.
+If you are using srt-geneator to generate test files from an openapi specification, you may use the filename key to specify a custom name.
 
 ## Creating Tests from an OpenAPI Specification: srt-generator
 ### Running srt-generator
@@ -102,6 +103,9 @@ This provides the `description` member of the test object.
 
 #### paths.path.method.responses.response.x-srt/expectation
 This extension is used to provide the `expectation` member of the test object.
+
+#### paths.path.method.responses.response.x-srt/filename
+This may be used to provide a custom filename for the test.
 
 #### paths.path.method.responses.response.x-srt.response-regexp
 This provides a regexp matching the expected response from the server. If it is not present, all responses are considered matches.
