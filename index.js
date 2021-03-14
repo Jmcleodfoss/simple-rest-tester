@@ -111,6 +111,11 @@ exports.mocha = (reqDescr) =>
 				}
 			}
 
+			/* Out-of-the-box, node.js does not support DELETE with body, but we want to. */
+			const deleteWithBody = reqDescr.options.method.toUpperCase() === 'DELETE' && reqDescr.hasOwnProperty('payload');
+			if (deleteWithBody)
+				reqDescr.options.headers['Content-Length'] = Buffer.byteLength(JSON.stringify(reqDescr.payload));
+
 			req = scheme.request(reqDescr.options, function(response) {
 				responseStr = '';
 

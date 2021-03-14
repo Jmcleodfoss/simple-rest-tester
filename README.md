@@ -325,6 +325,7 @@ Macros can be either response-style macros (${a}.b=value} or simple substitution
 ## Releases
 ### 1.0.7 (FUTURE - capture relesae notes here as changes are made)
 Add a new element to allow the file name (and test name) created by srt-generator to be specified.
+Allow DELETE methods to have a body.
 
 ### 1.0.6 2021-02-12
 Add new element to allow payload to be over-ridden. (This allows a single example to be used for multiple tests by modifying various of its properties at test time.)
