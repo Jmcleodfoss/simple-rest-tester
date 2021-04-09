@@ -132,10 +132,12 @@ function getExamples(methodObject, contentType)
 function getPath(pathPrefix, path, srtObject)
 {
 	if (srtObject.hasOwnProperty('path-subst')) {
-		const substitutions = srtObject['path-subst'];
-		for (const subst of Object.keys(substitutions)) {
-			path = path.replace(subst, substitutions[subst]);
-		}
+		const substitutionObject = srtObject['path-subst'];
+		const substitutions = Array.isArray(substitutionObject) ? substitutionObject : [ substitutionObject ];
+		substitutions.forEach(s => {
+			const [text, replacement] = Object.entries(s)[0];
+			path = path.replace(text, replacement);
+		});
 	}
 	return pathPrefix + path + getSchemaSRTValue(srtObject, 'path-suffix', '');
 }
