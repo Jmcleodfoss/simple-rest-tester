@@ -244,17 +244,30 @@ function generate(apiSpec)
 				const method = methodLC.toLocaleUpperCase();
 				for (const response in methodObject.responses) {
 					const responseObject = methodObject.responses[response];
-					const srtObject = responseObject.hasOwnProperty(SRTDataKey) ? responseObject[SRTDataKey] : null;
-					if (srtObject == null || getSchemaSRTValue(srtObject, 'skip-test', false))
+					const srtData = responseObject.hasOwnProperty(SRTDataKey) ? responseObject[SRTDataKey] : null;
+					if (srtData == null || (!Array.isArray(srtData) && getSchemaSRTValue(srtData, 'skip-test', false)))
 						continue;
-					for (const example in examples){
-						const test = createTest(scheme, host, port, method, methodObject, pathPrefix, path, response, responseObject, srtObject, contentType, example, examples[example]);
-						const filename = test['testname'] + '.json';
-						await safeWriteFile(filename, JSON.stringify(test, null, 2));
 
-						// If testing for a non-success response, we only need one test case.
-						if (response != 200 && response != 204)
-							break;
+					// There can be either an array of SRT objects, or an array of examples, or a single SRT object (which is handled as an example)
+					if (Array.isArray(srtData)) {
+						// Process each srtObject, ignoring example data
+						for (const srtObject of srtData) {
+							const test = createTest(scheme, host, port, method, methodObject, pathPrefix, path, response, responseObject, srtObject, contentType, '', { '': null});
+							const filename = test['testname'] + '.json';
+							await safeWriteFile(filename, JSON.stringify(test, null, 2));
+						}
+					} else {
+						for (const example in examples){
+							// Process examples using first srtObject
+							const srtObject = Array.isArray(srtData) ? srtData[0] : srtData;
+							const test = createTest(scheme, host, port, method, methodObject, pathPrefix, path, response, responseObject, srtObject, contentType, example, examples[example]);
+							const filename = test['testname'] + '.json';
+							await safeWriteFile(filename, JSON.stringify(test, null, 2));
+
+							// If testing for a non-success response, we only use one test case from the examples.
+							if (response != 200 && response != 204)
+								break;
+						}
 					}
 				}
 			}
