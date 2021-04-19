@@ -25,7 +25,7 @@ exports.addMacro = (macro, substitution) =>
 /* Save results of query for future tests to use in a ${A}.b macro */
 function saveMacros(prefix, responseStr, macroDef)
 {
-	const macroPrefix = '${' + prefix + '}.'
+	const macroPrefix = '${' + prefix + '}.';
 	const responseObject = JSON.parse(responseStr);
 	Object.keys(responseObject).forEach(function(key){
 		const index = macroPrefix + key;
@@ -35,7 +35,7 @@ function saveMacros(prefix, responseStr, macroDef)
 	if (macroDef !== null) {
 		for (const m in macroDef) {
 			if (macroDef[m].definitionPhase != 'postResponse')
-				continue
+				continue;
 			const f = eval(macroDef[m].definition);
 			macros[macroPrefix + macroDef[m].name] = f(responseObject);
 		}
@@ -89,7 +89,7 @@ exports.mocha = (reqDescr) =>
 			if (reqDescr.hasOwnProperty('macroDef')) {
 				for (const m in reqDescr.macroDef) {
 					if (reqDescr.macroDef[m].definitionPhase != 'preRequest')
-						continue
+						continue;
 					const f = eval(reqDescr.macroDef[m].definition);
 					macros['${' + reqDescr.macroDef[m].name + '}'] = f(reqDescr);
 				}
@@ -107,7 +107,7 @@ exports.mocha = (reqDescr) =>
 				console.log('Headers');
 					Object.keys(reqDescr.options.headers).forEach(function(key) {
 						console.log('\t' + key + ': ' + reqDescr.options.headers[key]);
-					})
+					});
 				}
 			}
 

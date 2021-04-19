@@ -64,7 +64,7 @@ for (const jsonFile of options._unknown) {
 			} else if (!reqDescr.macroDef[m].hasOwnProperty('definition')) {
 				console.log('warning: macro definition ' + reqDescr.macroDef[m].name + ' is missing definition, skipping');
 			} else if (reqDescr.macroDef[m].definitionPhase == 'preRequest') {
-				srt.addMacro(reqDescr.macroDef[m].name, 'pre-request defined macro')
+				srt.addMacro(reqDescr.macroDef[m].name, 'pre-request defined macro');
 			} else if (reqDescr.macroDef[m].definitionPhase == 'postResponse') {
 				srt.addMacro(reqDescr.macroDef[m].name, 'post-response defined macro');
 			} else {
