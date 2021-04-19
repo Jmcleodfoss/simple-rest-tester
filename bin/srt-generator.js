@@ -18,7 +18,8 @@ const optionDefinitions = [
 	{ name: 'overwrite', alias: 'O', type: Boolean, description: 'Overwrite any existing files without asking' },
 	{ name: 'server', alias: 's', type: Number, description: 'Index into server array from which to take scheme, host, and port' },
 	{ name: 'help', alias: 'h', type: Boolean, description: 'Display this usage guide' },
-	{ name: 'quiet', alias: 'q', type: Boolean, description: 'Suppress informational output' }
+	{ name: 'quiet', alias: 'q', type: Boolean, description: 'Suppress informational output' },
+	{ name: 'verbose', alias: 'v', type: Boolean, description: 'Additional informational output' }
 ];
 const commandlineHelpTemplate = path.basename(process.argv[1], ".js") + '[-h | [-o] [-s #] [-q] openapi-spec, [openapi-spec...]]';
 const options = CommandLineArgs(optionDefinitions, { partial: true });
@@ -108,6 +109,8 @@ async function safeWriteFile(filename, testStr)
 			console.log('Over-writing existing file ' + filename);
 	}
 
+	if (options.verbose)
+		console.log(`Writing file ${filename}`);
 	fs.writeFile(filename, testStr, err => {
 		if (err)
 			throw err;
