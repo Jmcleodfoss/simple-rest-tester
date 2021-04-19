@@ -331,6 +331,7 @@ Allow an array of path-subst replacements.
 When SRT_DEBUG is true, show the name of each filename as it is read in and parsed.
 Add verbose command line option to srt-generate, and list name of each file as it is written when verbose mode is active.
 When the expected status code is not encountered, list the expected status code after the one actually encountered (to assist with debugging).
+Fix handling of payload-override for objects, and revert to using JSON.parse instead of using VM2.
 
 ### 1.0.6 2021-02-12
 Add new element to allow payload to be over-ridden. (This allows a single example to be used for multiple tests by modifying various of its properties at test time.)

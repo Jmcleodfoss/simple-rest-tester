@@ -6,7 +6,6 @@ const readline = require('readline');
 const SwaggerParser = require('@apidevtools/swagger-parser');
 const CommandLineArgs = require('command-line-args');
 const CommandLineUsage = require('command-line-usage');
-const { VM } = require('vm2');
 
 const urlRegexp = /(https?):\/\/([^:\/]*)(:([1-9][0-9]*))?(\/.*$)?/;
 const contentType = 'application/json';
@@ -40,8 +39,6 @@ if (options.help) {
 	console.log(usage);
 	process.exit(0);
 }
-
-const vm = new VM({ timeout: 1000, eval: false, wasm: false, fixAsync: true, sandbox: {} });
 
 const serverIndex = options.server || 0;
 var fOverwriteAll = options.overwrite || false;
@@ -188,10 +185,8 @@ function createTest(scheme, host, port, method, methodObject, pathPrefix, path, 
 		// Clone the payload before modifying it in case it is from #/components/examples, as we don't want to permanently change the underlying
 		// This is not the cleanest way of doing this, but the code doesn't need to have fast responsiveness, and the payload should be only data, not functions
 		test['payload'] = JSON.parse(JSON.stringify(test['payload']));
-		for (const [key, value] of Object.entries(srtObject['payload-override'])) {
-			let rhs = vm.run(`"${value}"`);
-			eval(`test['payload'].${key} = "${rhs}"`);
-		}
+		for (const [key, value] of Object.entries(srtObject['payload-override']))
+			test['payload'][key] = value;
 	}
 
 	if (srtObject != null && srtObject.hasOwnProperty('prerequisites')) {
