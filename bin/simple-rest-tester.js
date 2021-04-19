@@ -2,6 +2,8 @@
 "use strict";
 const mocha_test = require('../index').mocha;
 
+var debug = process.env.SRT_DEBUG || false;
+
 // Used to find circular dependencies
 var currentFile;
 
@@ -56,6 +58,8 @@ function getTestFiles()
 		if (!fs.statSync(file).isFile() || file == 'package-lock.json')
 			continue;
 
+		if (debug)
+			console.log(`Reading ${file}`);
 		testData[file] = JSON.parse(fs.readFileSync(file));
 	}
 

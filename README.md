@@ -328,6 +328,7 @@ Add a new element to allow the file name (and test name) created by srt-generato
 Allow DELETE methods to have a body.
 Allow an array of tests to be defined for a response.
 Allow an array of path-subst replacements.
+When SRT_DEBUG is true, show the name of each filename as it is read in and parsed.
 
 ### 1.0.6 2021-02-12
 Add new element to allow payload to be over-ridden. (This allows a single example to be used for multiple tests by modifying various of its properties at test time.)
