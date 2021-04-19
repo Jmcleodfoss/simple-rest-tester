@@ -323,7 +323,7 @@ where
 Macros can be either response-style macros (${a}.b=value} or simple substitutions (${a}=value).
 
 ## Releases
-### 1.0.7 (FUTURE - capture relesae notes here as changes are made)
+### 1.0.7 2021-04-19
 Add a new element to allow the file name (and test name) created by srt-generator to be specified.
 Allow DELETE methods to have a body.
 Allow an array of tests to be defined for a response.
