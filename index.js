@@ -143,7 +143,7 @@ exports.mocha = (reqDescr) =>
 				await new Promise(sleepPromise);
 
 			if (debug)
-				console.log(`status: ${statusCode}\nresponse: '${responseStr}'`);
+				console.log(`status: ${statusCode} ${statusCode != reqDescr.status ? ' (expected ' + reqDescr.status + ')' : ''}\nresponse: '${responseStr}$'`);
 
 			expect(statusCode).to.equal(parseInt(reqDescr.status));
 
