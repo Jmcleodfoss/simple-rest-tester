@@ -51,8 +51,7 @@
 		"command-line-args",
 		"command-line-usage",
 		"glob",
-		"openapi-types",
-		"vm2"
+		"openapi-types"
 	],
 	"engines": {
 		"node": ">=12.18.0"
