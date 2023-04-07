@@ -323,7 +323,7 @@ where
 Macros can be either response-style macros (${a}.b=value} or simple substitutions (${a}=value).
 
 ## Releases
-### 1.0.8 2022-02-27
+### 1.0.8 2023-04-06
 Update dependencies to remove security issue.
 Drop unused library to remove security issue.
 
