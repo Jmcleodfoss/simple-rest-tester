@@ -54,7 +54,7 @@
 		"openapi-types"
 	],
 	"engines": {
-		"node": ">=12.18.0"
+		"node": ">=18.15.0"
 	},
 	"bin": {
 		"simple-rest-tester": "bin/simple-rest-tester.js",
