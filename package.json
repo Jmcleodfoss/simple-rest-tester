@@ -45,14 +45,14 @@
 		"type": "git",
 		"url": "https://github.Jmcleodfoss/simple-rest-tester"
 	},
-	"dependencies": [
-		"swagger-parser",
-		"chai",
-		"command-line-args",
-		"command-line-usage",
-		"glob",
-		"openapi-types"
-	],
+	"dependencies": {
+		"@apidevtools/swagger-parser": "^10.1.0",
+		"chai" : "^4.3.7",
+		"command-line-args": "^5.2.1",
+		"command-line-usage": "^7.0.1",
+		"glob": "^9.3.4",
+		"openapi-types": "^12.1.0"
+	},
 	"engines": {
 		"node": ">=18.15.0"
 	},
